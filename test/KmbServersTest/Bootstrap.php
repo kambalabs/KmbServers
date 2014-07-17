@@ -5,11 +5,11 @@ use KmbBaseTest\AbstractBootstrap;
 use Zend\Stdlib\ArrayUtils;
 
 define('BASE_PATH', dirname(dirname(__DIR__)));
-$kmbCoreModulePath = BASE_PATH . '/vendor/kambalabs/kmb-base';
-if (!is_dir($kmbCoreModulePath)) {
-    $kmbCoreModulePath = dirname(BASE_PATH) . '/KmbBase';
+$kmbBaseModulePath = BASE_PATH . '/vendor/kambalabs/kmb-base';
+if (!is_dir($kmbBaseModulePath)) {
+    $kmbBaseModulePath = dirname(BASE_PATH) . '/KmbBase';
 }
-require $kmbCoreModulePath . '/test/KmbBaseTest/AbstractBootstrap.php';
+require $kmbBaseModulePath . '/test/KmbBaseTest/AbstractBootstrap.php';
 
 class Bootstrap extends AbstractBootstrap
 {

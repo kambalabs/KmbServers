@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kamba\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-11 15:25+0100\n"
-"PO-Revision-Date: 2014-07-11 15:25+0100\n"
+"POT-Creation-Date: 2014-07-17 22:59+0100\n"
+"PO-Revision-Date: 2014-07-17 22:59+0100\n"
 "Last-Translator: Emmanuel Bouton <goten4@gmail.com>\n"
 "Language-Team: Kamba Contibutors <devteam@kamba.org>\n"
 "Language: \n"
@@ -17,95 +17,95 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../src/Servers/View/Decorator/NodeRAMDecorator.php:33
+#: ../src/KmbServers/View/Decorator/NodeRAMDecorator.php:33
 msgid "RAM"
 msgstr ""
 
-#: ../src/Servers/View/Decorator/NodeDistribDecorator.php:33
+#: ../src/KmbServers/View/Decorator/NodeDistribDecorator.php:33
 msgid "Distrib"
 msgstr ""
 
-#: ../src/Servers/View/Decorator/NodeKernelDecorator.php:33
+#: ../src/KmbServers/View/Decorator/NodeKernelDecorator.php:33
 msgid "Kernel"
 msgstr ""
 
-#: ../src/Servers/View/Decorator/NodeOSDecorator.php:33
+#: ../src/KmbServers/View/Decorator/NodeOSDecorator.php:33
 msgid "OS"
 msgstr ""
 
-#: ../src/Servers/View/Decorator/NodeCPUDecorator.php:33
+#: ../src/KmbServers/View/Decorator/NodeCPUDecorator.php:33
 msgid "CPU"
 msgstr ""
 
-#: ../src/Servers/View/Decorator/NodeUptimeDecorator.php:33
+#: ../src/KmbServers/View/Decorator/NodeUptimeDecorator.php:33
 msgid "Uptime"
 msgstr ""
 
-#: ../src/Servers/View/Decorator/NodePuppetDecorator.php:33
+#: ../src/KmbServers/View/Decorator/NodePuppetDecorator.php:33
 msgid "Puppet"
 msgstr ""
 
-#: ../src/Servers/View/Decorator/NodeNameDecorator.php:34
+#: ../src/KmbServers/View/Decorator/NodeNameDecorator.php:34
 msgid "Server"
 msgstr ""
 
-#: ../view/servers/index/show.phtml:4
+#: ../view/kmb-servers/index/show.phtml:4
 msgid "Detailed informations on server"
 msgstr ""
 
-#: ../view/servers/index/show.phtml:12
+#: ../view/kmb-servers/index/show.phtml:12
 msgid "back"
 msgstr ""
 
-#: ../view/servers/index/show.phtml:16
+#: ../view/kmb-servers/index/show.phtml:16
 msgid "day"
 msgid_plural "days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view/servers/index/show.phtml:17
+#: ../view/kmb-servers/index/show.phtml:17
 msgid "uptime"
 msgstr ""
 
-#: ../view/servers/index/show.phtml:24
+#: ../view/kmb-servers/index/show.phtml:24
 msgid "Server facts"
 msgstr ""
 
-#: ../view/servers/index/show.phtml:29
-#: ../view/servers/index/index.phtml:7
+#: ../view/kmb-servers/index/show.phtml:29
+#: ../view/kmb-servers/index/index.phtml:7
 msgid "Fact"
 msgstr ""
 
-#: ../view/servers/index/show.phtml:30
-#: ../view/servers/index/index.phtml:20
+#: ../view/kmb-servers/index/show.phtml:30
+#: ../view/kmb-servers/index/index.phtml:20
 msgid "Value"
 msgstr ""
 
-#: ../view/servers/index/index.phtml:2
+#: ../view/kmb-servers/index/index.phtml:2
 msgid "Filter servers by fact"
 msgstr ""
 
-#: ../view/servers/index/index.phtml:10
+#: ../view/kmb-servers/index/index.phtml:10
 msgid "Select a fact..."
 msgstr ""
 
-#: ../view/servers/index/index.phtml:23
+#: ../view/kmb-servers/index/index.phtml:23
 msgid "Enter a value for the fact"
 msgstr ""
 
-#: ../view/servers/index/index.phtml:28
+#: ../view/kmb-servers/index/index.phtml:28
 msgid "Search"
 msgstr ""
 
-#: ../view/servers/index/index.phtml:29
+#: ../view/kmb-servers/index/index.phtml:29
 msgid "Cancel"
 msgstr ""
 
-#: ../view/servers/index/index.phtml:36
+#: ../view/kmb-servers/index/index.phtml:36
 msgid "PuppetDB servers inventory"
 msgstr ""
 
-#: ../view/servers/index/index.phtml:39
+#: ../view/kmb-servers/index/index.phtml:39
 msgid "fields available to search"
 msgstr ""
 
