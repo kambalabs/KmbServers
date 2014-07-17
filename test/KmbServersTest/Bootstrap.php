@@ -1,15 +1,15 @@
 <?php
 namespace KmbServersTest;
 
-use KmbCoreTest\AbstractBootstrap;
+use KmbBaseTest\AbstractBootstrap;
 use Zend\Stdlib\ArrayUtils;
 
 define('BASE_PATH', dirname(dirname(__DIR__)));
-$kmbCoreModulePath = BASE_PATH . '/vendor/kambalabs/kmb-core';
+$kmbCoreModulePath = BASE_PATH . '/vendor/kambalabs/kmb-base';
 if (!is_dir($kmbCoreModulePath)) {
-    $kmbCoreModulePath = dirname(BASE_PATH) . '/KmbCore';
+    $kmbCoreModulePath = dirname(BASE_PATH) . '/KmbBase';
 }
-require $kmbCoreModulePath . '/test/KmbCoreTest/AbstractBootstrap.php';
+require $kmbCoreModulePath . '/test/KmbBaseTest/AbstractBootstrap.php';
 
 class Bootstrap extends AbstractBootstrap
 {
@@ -61,10 +61,5 @@ class Bootstrap extends AbstractBootstrap
     }
 }
 
-try {
-    Bootstrap::init();
-    Bootstrap::chroot();
-} catch (\Exception $e) {
-    echo $e->getMessage() . PHP_EOL;
-    echo $e->getTraceAsString() . PHP_EOL;
-}
+Bootstrap::init();
+Bootstrap::chroot();

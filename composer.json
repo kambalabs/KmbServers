@@ -16,10 +16,11 @@
         }
     ],
     "require": {
-        "kambalabs/kmb-core": "dev-master",
+        "kambalabs/kmb-base": "dev-master",
         "kambalabs/kmb-authentication": "dev-master",
         "kambalabs/kmb-permission": "dev-master",
         "kambalabs/kmb-puppetdb": "dev-master",
+        "kambalabs/kmb-puppet": "dev-master",
         "kambalabs/kmb-dashboard": "dev-master"
     },
     "require-dev": {

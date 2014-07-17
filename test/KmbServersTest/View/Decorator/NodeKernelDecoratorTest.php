@@ -1,7 +1,7 @@
 <?php
 namespace KmbServersTest\View\Decorator;
 
-use KmbCoreTest\View\Decorator\AbstractDecoratorTestCase;
+use KmbBaseTest\View\Decorator\AbstractDecoratorTestCase;
 use KmbPuppetDb\Model\Node;
 use KmbPuppetDb\Model\NodeInterface;
 use KmbServers\View\Decorator\NodeKernelDecorator;
