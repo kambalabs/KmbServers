@@ -37,6 +37,8 @@ class Bootstrap extends AbstractBootstrap
                 'modules' => array(
                     'ZfcRbac',
                     'GtnDataTables',
+                    'KmbDomain',
+                    'KmbZendDbInfrastructure',
                     'KmbAuthentication',
                     'KmbFakeAuthentication',
                     'KmbPermission',
