@@ -9,4 +9,8 @@ return [
             ],
         ],
     ],
+    'db' => [
+        'driver' => 'Pdo',
+        'dsn' => 'sqlite::memory:'
+    ],
 ];

@@ -21,12 +21,21 @@
 namespace KmbServers\Controller;
 
 use GtnDataTables\Service\DataTable;
+use KmbDomain\Model\EnvironmentInterface;
+use KmbDomain\Model\EnvironmentRepositoryInterface;
+use KmbPuppetDb\Service\NodeInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+    /** @var EnvironmentRepositoryInterface */
+    protected $environmentRepository;
+
+    /** @var NodeInterface */
+    protected $nodeService;
+
     public function indexAction()
     {
         $viewModel = $this->acceptableViewModelSelector(array(
@@ -71,5 +80,71 @@ class IndexController extends AbstractActionController
             $data[] = array($escapeHtml($fact), '<pre>' . $escapeHtml($value) . '</pre>');
         }
         return new JsonModel(array('data' => $data));
+    }
+
+    public function assignToEnvironmentAction()
+    {
+        /** @var EnvironmentInterface $environment */
+        $environment = $this->environmentRepository->getById($this->params()->fromPost('environment'));
+
+        if ($environment === null) {
+            return $this->notFoundAction();
+        }
+
+        $nodeService = $this->getNodeService();
+        foreach ($this->params()->fromPost('nodes', []) as $nodeName) {
+            $node = $nodeService->getByName($nodeName);
+            if ($node !== null) {
+                $node->setEnvironment($environment->getNormalizedName());
+                $nodeService->replaceFacts($node);
+            }
+        }
+
+        $this->flashMessenger()->addSuccessMessage($this->translate('The servers has been succesfully assigned to environment ' . $environment->getNormalizedName()));
+        return $this->redirect()->toRoute('servers');
+    }
+
+    /**
+     * Set EnvironmentRepository.
+     *
+     * @param \KmbDomain\Model\EnvironmentRepositoryInterface $environmentRepository
+     * @return IndexController
+     */
+    public function setEnvironmentRepository($environmentRepository)
+    {
+        $this->environmentRepository = $environmentRepository;
+        return $this;
+    }
+
+    /**
+     * Get EnvironmentRepository.
+     *
+     * @return \KmbDomain\Model\EnvironmentRepositoryInterface
+     */
+    public function getEnvironmentRepository()
+    {
+        return $this->environmentRepository;
+    }
+
+    /**
+     * Set NodeService.
+     *
+     * @param \KmbPuppetDb\Service\NodeInterface $nodeService
+     * @return IndexController
+     */
+    public function setNodeService($nodeService)
+    {
+        $this->nodeService = $nodeService;
+        return $this;
+    }
+
+    /**
+     * Get NodeService.
+     *
+     * @return \KmbPuppetDb\Service\NodeInterface
+     */
+    public function getNodeService()
+    {
+        return $this->nodeService;
     }
 }

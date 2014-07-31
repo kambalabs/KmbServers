@@ -25,6 +25,16 @@ return [
                     ],
                 ],
             ],
+            'servers-assign-to-environment' => [
+                'type' => 'Literal',
+                'options' => [
+                    'route' => '/servers/assign-to-environment',
+                    'defaults' => [
+                        'controller' => 'KmbServers\Controller\Index',
+                        'action' => 'assign-to-environment',
+                    ],
+                ],
+            ],
         ],
     ],
     'translator' => [
@@ -37,8 +47,8 @@ return [
         ],
     ],
     'controllers' => [
-        'invokables' => [
-            'KmbServers\Controller\Index' => 'KmbServers\Controller\IndexController'
+        'factories' => [
+            'KmbServers\Controller\Index' => 'KmbServers\Service\IndexControllerFactory'
         ],
     ],
     'view_helpers' => [
@@ -66,7 +76,12 @@ return [
                     'controller' => 'KmbServers\Controller\Index',
                     'actions' => ['index', 'show', 'facts'],
                     'roles' => ['user']
-                ]
+                ],
+                [
+                    'controller' => 'KmbServers\Controller\Index',
+                    'actions' => ['assign-to-environment'],
+                    'roles' => ['admin']
+                ],
             ]
         ],
     ],
@@ -77,8 +92,14 @@ return [
             'collectorFactory' => 'KmbServers\Service\NodeCollectorFactory',
             'columns' => [
                 [
+                    'decorator' => 'KmbServers\View\Decorator\NodeCheckboxDecorator',
+                ],
+                [
                     'decorator' => 'KmbServers\View\Decorator\NodeNameDecorator',
                     'key' => 'name',
+                ],
+                [
+                    'decorator' => 'KmbServers\View\Decorator\NodeEnvironmentDecorator',
                 ],
                 [
                     'decorator' => 'KmbServers\View\Decorator\NodeOSDecorator',

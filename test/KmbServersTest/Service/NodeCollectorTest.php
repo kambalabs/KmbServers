@@ -44,6 +44,11 @@ class NodeCollectorTest extends \PHPUnit_Framework_TestCase
                             ),
                             array(
                                 '~',
+                                array('fact', 'kmbenv'),
+                                'wheezy'
+                            ),
+                            array(
+                                '~',
                                 array('fact', 'operatingsystem'),
                                 'wheezy'
                             ),

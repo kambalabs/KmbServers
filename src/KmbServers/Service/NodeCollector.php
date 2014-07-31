@@ -60,6 +60,11 @@ class NodeCollector implements CollectorInterface
                 ),
                 array(
                     '~',
+                    array('fact', 'kmbenv'),
+                    $search
+                ),
+                array(
+                    '~',
                     array('fact', 'operatingsystem'),
                     $search
                 ),

@@ -1,3 +1,6 @@
+<?php echo $this->flashMessenger()->render('success', ['alert', 'alert-success']) ?>
+<?php echo $this->flashMessenger()->render('warning', ['alert', 'alert-warning']) ?>
+<?php echo $this->flashMessenger()->render('error', ['alert', 'alert-danger']) ?>
 <div class="panel panel-default">
     <div class="panel-heading collapsed" data-toggle="collapse" data-target="#factfilter"><span class="glyphicon glyphicon-search"></span><span class="panel-break"></span><?php echo $this->translate("Filter servers by fact") ?></div>
     <div class="panel-body collapse" id="factfilter">
@@ -35,7 +38,18 @@
 <div class="panel panel-default">
     <div class="panel-heading"><span class="glyphicon glyphicon-tasks"></span><span class="panel-break"></span><?php echo $this->translate('PuppetDB servers inventory') ?></div>
     <div class="panel-body">
-        <?php echo $this->datatable('servers_datatable')->renderHtml(); ?>
-        <p>* <?php echo $this->translate('fields available to search'); ?></p>
+        <form class="form-inline" role="form" id="set-environment-form" action="<?php echo $this->url('servers-assign-to-environment') ?>" method="post">
+            <?php echo $this->datatable('servers_datatable')->renderHtml(); ?>
+            <p class="pull-right">* <?php echo $this->translate('fields available to search'); ?></p>
+            <div class="input-group">
+                <select id="environment" class="form-control" name="environment" data-placeholder="<?php echo $this->translate('Assign to environment') ?>" data-rel="chosen" style="display: none;">
+                    <option></option>
+                    <?php echo $this->environmentSelect('readEnv') ?>
+                </select>
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="submit"><?php echo $this->translate('OK') ?></button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
