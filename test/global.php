@@ -2,6 +2,16 @@
 return [
     'router' => [
         'routes' => [
+            'signout' => [
+                'type' => 'Literal',
+                'options' => [
+                    'route' => '/signout',
+                    'defaults' => [
+                        'controller' => 'KmbOabAuthentication\Controller\Signout',
+                        'action' => 'index',
+                    ],
+                ],
+            ],
             'index' => [
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => [
