@@ -3,35 +3,35 @@ return [
     'router' => [
         'routes' => [
             'servers' => [
-                'type' => 'segment',
+                'type' => 'Segment',
                 'options' => [
-                    'route' => '/servers[/]',
+                    'route' => '[/env/:envId]/servers[/[:action]]',
+                    'constraints' => [
+                        'envId' => '[0-9]+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
                     'defaults' => [
-                        'controller' => 'KmbServers\Controller\Index',
+                        '__NAMESPACE__' => 'KmbServers\Controller',
+                        'controller' => 'Index',
                         'action' => 'index',
+                        'envId' => '0',
                     ],
                 ],
             ],
             'server' => [
-                'type' => 'segment',
+                'type' => 'Segment',
                 'options' => [
-                    'route' => '/servers/:hostname[/:action]',
+                    'route' => '[/env/:envId]/server/:hostname[/[:action]]',
                     'constraints' => [
+                        'envId' => '[0-9]+',
                         'hostname' => '(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ],
                     'defaults' => [
-                        'controller' => 'KmbServers\Controller\Index',
+                        '__NAMESPACE__' => 'KmbServers\Controller',
+                        'controller' => 'Index',
                         'action' => 'show',
-                    ],
-                ],
-            ],
-            'servers-assign-to-environment' => [
-                'type' => 'Literal',
-                'options' => [
-                    'route' => '/servers/assign-to-environment',
-                    'defaults' => [
-                        'controller' => 'KmbServers\Controller\Index',
-                        'action' => 'assign-to-environment',
+                        'envId' => '0',
                     ],
                 ],
             ],

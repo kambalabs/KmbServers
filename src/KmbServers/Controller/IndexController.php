@@ -101,7 +101,7 @@ class IndexController extends AbstractActionController
         }
 
         $this->flashMessenger()->addSuccessMessage($this->translate('The servers has been succesfully assigned to environment ' . $environment->getNormalizedName()));
-        return $this->redirect()->toRoute('servers');
+        return $this->redirect()->toRoute('servers', ['action' => 'index'], [], true);
     }
 
     /**

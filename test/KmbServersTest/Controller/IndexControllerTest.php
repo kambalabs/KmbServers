@@ -75,7 +75,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
     /** @test */
     public function canShowServer()
     {
-        $this->dispatch('/servers/node1.local');
+        $this->dispatch('/server/node1.local');
 
         $this->assertResponseStatusCode(200);
         $this->assertControllerName('KmbServers\Controller\Index');
@@ -86,7 +86,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
     /** @test */
     public function canGetFacts()
     {
-        $this->dispatch('/servers/node1.local/facts');
+        $this->dispatch('/server/node1.local/facts');
 
         $this->assertResponseStatusCode(200);
         $this->assertControllerName('KmbServers\Controller\Index');
@@ -121,6 +121,6 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch('/servers/assign-to-environment', 'POST', ['environment' => 1, 'nodes' => ['node1.local', 'node2.local']]);
 
         $this->assertResponseStatusCode(302);
-        $this->assertRedirectTo('/servers/');
+        $this->assertRedirectTo('/servers');
     }
 }

@@ -38,7 +38,7 @@
 <div class="panel panel-default">
     <div class="panel-heading"><span class="glyphicon glyphicon-tasks"></span><span class="panel-break"></span><?php echo $this->translate('PuppetDB servers inventory') ?></div>
     <div class="panel-body">
-        <form class="form-inline" role="form" id="set-environment-form" action="<?php echo $this->url('servers-assign-to-environment') ?>" method="post">
+        <form class="form-inline" role="form" id="set-environment-form" action="<?php echo $this->url('servers', ['action' => 'assign-to-environment'], [], true) ?>" method="post">
             <?php echo $this->datatable('servers_datatable')->renderHtml(); ?>
             <p class="pull-right">* <?php echo $this->translate('fields available to search'); ?></p>
             <div class="input-group">

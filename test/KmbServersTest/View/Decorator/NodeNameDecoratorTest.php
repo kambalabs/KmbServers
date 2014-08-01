@@ -27,6 +27,6 @@ class NodeNameDecoratorTest extends AbstractDecoratorTestCase
         $node = new Node('node1.local', NodeInterface::UNCHANGED, null, array(
             'hostname' => 'node1',
         ));
-        $this->assertEquals('<a href="/servers/node1.local?back=/servers/" class="show-server" data-rel="tooltip" data-placement="right" data-original-title="## node1.local ##">## node1 ##</a>', $this->decorator->decorateValue($node));
+        $this->assertEquals('<a href="/servers/node1.local?back=/servers/" class="show-server" data-rel="tooltip" data-placement="right" data-original-title=".. node1.local ..">## node1 ##</a>', $this->decorator->decorateValue($node));
     }
 }

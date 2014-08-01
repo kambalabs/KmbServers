@@ -22,7 +22,6 @@ namespace KmbServers\View\Decorator;
 
 use GtnDataTables\View\AbstractDecorator;
 use KmbPuppetDb\Model\Node;
-use Zend\View\Helper\EscapeHtml;
 
 class NodeNameDecorator extends AbstractDecorator
 {
@@ -40,8 +39,17 @@ class NodeNameDecorator extends AbstractDecorator
      */
     public function decorateValue($object)
     {
-        /** @var EscapeHtml $escapeHtml */
-        $escapeHtml = $this->getViewHelperManager()->get('escapeHtml');
-        return '<a href="' . $this->url('server', array('hostname' => $object->getName()), array('query' => array('back' => $this->url('servers')))) . '" class="show-server" data-rel="tooltip" data-placement="right" data-original-title="' . $escapeHtml($object->getName()) . '">' . $escapeHtml($object->getFact('hostname')) . '</a>';
+        return
+            '<a href="' .
+            $this->url(
+                'server',
+                ['hostname' => $object->getName(), 'action' => 'show'],
+                ['query' => ['back' => $this->url('servers', [], [], true)]],
+                true
+            ) .
+            '" class="show-server" data-rel="tooltip" data-placement="right" data-original-title="' .
+            $this->escapeHtmlAttr($object->getName()) . '">' .
+            $this->escapeHtml($object->getFact('hostname')) .
+            '</a>';
     }
 }
