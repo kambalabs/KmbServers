@@ -1,6 +1,7 @@
 <?php
 namespace KmbServersTest\Service;
 
+use KmbDomain\Model\Environment;
 use KmbPuppetDb\Model;
 use KmbPuppetDb\Model\NodesCollection;
 use KmbServers\Service\NodeCollector;
@@ -17,7 +18,7 @@ class NodeCollectorTest extends \PHPUnit_Framework_TestCase
         $nodeService->expects($this->any())
             ->method('getAll')
             ->will($this->returnCallback(function ($query = null, $offset = null, $limit = null, $orderBy = null) {
-                $nodes = array(
+                $nodes = [
                     new Model\Node('node1.local'),
                     new Model\Node('node2.local'),
                     new Model\Node('node3.local'),
@@ -27,83 +28,98 @@ class NodeCollectorTest extends \PHPUnit_Framework_TestCase
                     new Model\Node('node7.local'),
                     new Model\Node('node8.local'),
                     new Model\Node('node9.local'),
-                );
-                if ($query == array(
+                ];
+                if ($query == [
                         'and',
-                        array(
-                            '~',
-                            array('fact', 'architecture'),
-                            'amd64'
-                        ),
-                        array(
+                        [
                             'or',
-                            array(
+                            [
                                 '~',
-                                array('fact', 'hostname'),
+                                ['fact', 'hostname'],
                                 'wheezy'
-                            ),
-                            array(
+                            ],
+                            [
                                 '~',
-                                array('fact', 'kmbenv'),
+                                ['fact', Model\NodeInterface::ENVIRONMENT_FACT],
                                 'wheezy'
-                            ),
-                            array(
+                            ],
+                            [
                                 '~',
-                                array('fact', 'operatingsystem'),
+                                ['fact', 'operatingsystem'],
                                 'wheezy'
-                            ),
-                            array(
+                            ],
+                            [
                                 '~',
-                                array('fact', 'kernelversion'),
+                                ['fact', 'kernelversion'],
                                 'wheezy'
-                            ),
-                            array(
+                            ],
+                            [
                                 '~',
-                                array('fact', 'lsbdistcodename'),
+                                ['fact', 'lsbdistcodename'],
                                 'wheezy'
-                            ),
-                        )
-                    )
+                            ],
+                        ],
+                        [
+                            '~',
+                            ['fact', 'architecture'],
+                            'amd64'
+                        ],
+                    ]
                 ) {
                     return NodesCollection::factory(
-                        array(
+                        [
                             new Model\Node('node3.local'),
                             new Model\Node('node4.local'),
                             new Model\Node('node5.local'),
                             new Model\Node('node7.local'),
                             new Model\Node('node9.local'),
-                        ),
+                        ],
                         6,
                         6
                     );
                 }
-                if ($query == array(
+                if ($query == [
                         '~',
-                        array('fact', 'architecture'),
+                        ['fact', 'architecture'],
                         'amd64'
-                    )
+                    ]
                 ) {
                     return NodesCollection::factory(
-                        array(
+                        [
                             new Model\Node('node3.local'),
                             new Model\Node('node4.local'),
                             new Model\Node('node5.local'),
                             new Model\Node('node7.local'),
                             new Model\Node('node8.local'),
-                        ),
+                        ],
                         7,
                         7
                     );
                 }
+                if ($query == [
+                        '=',
+                        ['fact', 'kmbenv'],
+                        'STABLE_PF1'
+                    ]
+                ) {
+                    return NodesCollection::factory(
+                        [
+                            new Model\Node('node3.local'),
+                            new Model\Node('node8.local'),
+                        ],
+                        2,
+                        2
+                    );
+                }
                 if ($query != null) {
                     return NodesCollection::factory(
-                        array(
+                        [
                             new Model\Node('node2.local'),
                             new Model\Node('node3.local'),
                             new Model\Node('node4.local'),
                             new Model\Node('node5.local'),
                             new Model\Node('node7.local'),
-                        ),
+                        ],
                         8,
                         8
                     );
@@ -136,10 +152,10 @@ class NodeCollectorTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canFindAll()
     {
-        $collection = $this->nodeCollector->findAll(array(
+        $collection = $this->nodeCollector->findAll([
             'start' => 0,
             'length' => 5,
-        ));
+        ]);
 
         $this->assertInstanceOf('GtnDataTables\Model\Collection', $collection);
         $this->assertEquals(5, count($collection->getData()));
@@ -148,15 +164,35 @@ class NodeCollectorTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function canFindAllWithSearch()
+    public function canFindAllByEnvironment()
     {
-        $collection = $this->nodeCollector->findAll(array(
+        $parent = new Environment();
+        $parent->setName('STABLE');
+        $environment = new Environment();
+        $environment->setName('PF1');
+        $environment->setParent($parent);
+        $collection = $this->nodeCollector->findAll([
             'start' => 0,
             'length' => 5,
-            'search' => array(
+            'environment' => $environment
+        ]);
+
+        $this->assertInstanceOf('GtnDataTables\Model\Collection', $collection);
+        $this->assertEquals(2, count($collection->getData()));
+        $this->assertEquals(2, $collection->getTotal());
+        $this->assertEquals(2, $collection->getFilteredCount());
+    }
+
+    /** @test */
+    public function canFindAllWithSearch()
+    {
+        $collection = $this->nodeCollector->findAll([
+            'start' => 0,
+            'length' => 5,
+            'search' => [
                 'value' => 'wheezy'
-            )
-        ));
+            ]
+        ]);
 
         $this->assertInstanceOf('GtnDataTables\Model\Collection', $collection);
         $data = $collection->getData();
@@ -169,15 +205,15 @@ class NodeCollectorTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canFindAllWithSearchAndFactFilter()
     {
-        $collection = $this->nodeCollector->findAll(array(
+        $collection = $this->nodeCollector->findAll([
             'start' => 0,
             'length' => 5,
-            'search' => array(
+            'search' => [
                 'value' => 'wheezy'
-            ),
+            ],
             'factName' => 'architecture',
             'factValue' => 'amd64',
-        ));
+        ]);
 
         $this->assertInstanceOf('GtnDataTables\Model\Collection', $collection);
         $data = $collection->getData();
@@ -190,12 +226,12 @@ class NodeCollectorTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canFindAllWithFactFilter()
     {
-        $collection = $this->nodeCollector->findAll(array(
+        $collection = $this->nodeCollector->findAll([
             'start' => 0,
             'length' => 5,
             'factName' => 'architecture',
             'factValue' => 'amd64',
-        ));
+        ]);
 
         $this->assertInstanceOf('GtnDataTables\Model\Collection', $collection);
         $data = $collection->getData();
@@ -208,16 +244,16 @@ class NodeCollectorTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canFindAllWithOrdering()
     {
-        $collection = $this->nodeCollector->findAll(array(
+        $collection = $this->nodeCollector->findAll([
             'start' => 0,
             'length' => 5,
-            'order' => array(
-                array(
+            'order' => [
+                [
                     'column' => 'name',
                     'dir' => 'desc',
-                ),
-            )
-        ));
+                ],
+            ]
+        ]);
 
         $this->assertInstanceOf('GtnDataTables\Model\Collection', $collection);
         $data = $collection->getData();

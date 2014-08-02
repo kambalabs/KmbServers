@@ -25,6 +25,7 @@ use KmbDomain\Model\EnvironmentInterface;
 use KmbDomain\Model\EnvironmentRepositoryInterface;
 use KmbPuppetDb\Service\NodeInterface;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Stdlib\ArrayUtils;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
@@ -50,7 +51,12 @@ class IndexController extends AbstractActionController
         /** @var DataTable $datatable */
         $datatable = $this->getServiceLocator()->get('servers_datatable');
         if ($viewModel instanceof JsonModel) {
-            $result = $datatable->getResult($this->params()->fromQuery());
+            $params = $this->params()->fromQuery();
+            $environment = $this->getEnvironmentRepository()->getById($this->params()->fromRoute('envId'));
+            if ($environment !== null) {
+                $params['environment'] = $environment;
+            }
+            $result = $datatable->getResult($params);
             $viewModel->setVariable('draw', $result->getDraw());
             $viewModel->setVariable('recordsTotal', $result->getRecordsTotal());
             $viewModel->setVariable('recordsFiltered', $result->getRecordsFiltered());

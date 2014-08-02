@@ -22,6 +22,8 @@ namespace KmbServers\Service;
 
 use GtnDataTables\Model\Collection;
 use GtnDataTables\Service\CollectorInterface;
+use KmbDomain\Model\EnvironmentInterface;
+use KmbPuppetDb\Model\NodeInterface;
 use KmbPuppetDb\Service;
 
 class NodeCollector implements CollectorInterface
@@ -38,66 +40,75 @@ class NodeCollector implements CollectorInterface
         $offset = isset($params['start']) ? $params['start'] : null;
         $limit = isset($params['length']) ? $params['length'] : null;
 
+        $queryEnvironment = null;
+        if (isset($params['environment'])) {
+            /** @var EnvironmentInterface $environment */
+            $environment = $params['environment'];
+            $queryEnvironment = [
+                '=',
+                ['fact', NodeInterface::ENVIRONMENT_FACT],
+                $environment->getNormalizedName()
+            ];
+        }
+
         $queryFactFilter = null;
         $factName = isset($params['factName']) && $params['factName'] !== 'default' ? $params['factName'] : null;
         $factValue = isset($params['factValue']) ? $params['factValue'] : null;
         if (!empty($factName) && !empty($factValue)) {
-            $queryFactFilter = array(
+            $queryFactFilter = [
                 '~',
-                array('fact', $factName),
+                ['fact', $factName],
                 $factValue
-            );
+            ];
         }
+
         $querySearch = null;
         if (isset($params['search']['value']) && !empty($params['search']['value'])) {
             $search = $params['search']['value'];
-            $querySearch = array(
+            $querySearch = [
                 'or',
-                array(
+                [
                     '~',
-                    array('fact', 'hostname'),
+                    ['fact', 'hostname'],
                     $search
-                ),
-                array(
+                ],
+                [
                     '~',
-                    array('fact', 'kmbenv'),
+                    ['fact', NodeInterface::ENVIRONMENT_FACT],
                     $search
-                ),
-                array(
+                ],
+                [
                     '~',
-                    array('fact', 'operatingsystem'),
+                    ['fact', 'operatingsystem'],
                     $search
-                ),
-                array(
+                ],
+                [
                     '~',
-                    array('fact', 'kernelversion'),
+                    ['fact', 'kernelversion'],
                     $search
-                ),
-                array(
+                ],
+                [
                     '~',
-                    array('fact', 'lsbdistcodename'),
+                    ['fact', 'lsbdistcodename'],
                     $search
-                ),
-            );
-        }
-        $query = $querySearch;
-        if (!empty($querySearch) && !empty($queryFactFilter)) {
-            $query = array(
-                'and',
-                $queryFactFilter,
-                $querySearch
-            );
-        } elseif (!empty($queryFactFilter)) {
-            $query = $queryFactFilter;
+                ],
+            ];
         }
 
-        $orderBy = array();
+        $query = array_filter([$querySearch, $queryFactFilter, $queryEnvironment]);
+        if (count($query) > 1) {
+            array_unshift($query, 'and');
+        } else {
+            $query = array_shift($query);
+        }
+
+        $orderBy = [];
         if (isset($params['order'])) {
             foreach ($params['order'] as $clause) {
-                $orderBy[] = array(
+                $orderBy[] = [
                     'field' => $clause['column'],
                     'order' => $clause['dir'],
-                );
+                ];
             }
         }
 
