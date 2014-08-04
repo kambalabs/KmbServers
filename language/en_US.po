@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kamba\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-22 23:04+0100\n"
-"PO-Revision-Date: 2014-07-22 23:04+0100\n"
+"POT-Creation-Date: 2014-08-04 16:33+0100\n"
+"PO-Revision-Date: 2014-08-04 16:33+0100\n"
 "Last-Translator: Emmanuel Bouton <goten4@gmail.com>\n"
 "Language-Team: Kamba Contibutors <devteam@kamba.org>\n"
 "Language: \n"
@@ -16,6 +16,14 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 "X-Poedit-SearchPath-0: ..\n"
+
+#: ../src/KmbServers/Controller/IndexController.php:109
+msgid "The servers has been succesfully assigned to environment "
+msgstr ""
+
+#: ../src/KmbServers/View/Decorator/NodeEnvironmentDecorator.php:33
+msgid "Environment"
+msgstr ""
 
 #: ../src/KmbServers/View/Decorator/NodeRAMDecorator.php:33
 msgid "RAM"
@@ -45,7 +53,7 @@ msgstr ""
 msgid "Puppet"
 msgstr ""
 
-#: ../src/KmbServers/View/Decorator/NodeNameDecorator.php:34
+#: ../src/KmbServers/View/Decorator/NodeNameDecorator.php:33
 msgid "Server"
 msgstr ""
 
@@ -72,40 +80,48 @@ msgid "Server facts"
 msgstr ""
 
 #: ../view/kmb-servers/index/show.phtml:29
-#: ../view/kmb-servers/index/index.phtml:7
+#: ../view/kmb-servers/index/index.phtml:10
 msgid "Fact"
 msgstr ""
 
 #: ../view/kmb-servers/index/show.phtml:30
-#: ../view/kmb-servers/index/index.phtml:20
+#: ../view/kmb-servers/index/index.phtml:23
 msgid "Value"
 msgstr ""
 
-#: ../view/kmb-servers/index/index.phtml:2
+#: ../view/kmb-servers/index/index.phtml:5
 msgid "Filter servers by fact"
 msgstr ""
 
-#: ../view/kmb-servers/index/index.phtml:10
+#: ../view/kmb-servers/index/index.phtml:13
 msgid "Select a fact..."
 msgstr ""
 
-#: ../view/kmb-servers/index/index.phtml:23
+#: ../view/kmb-servers/index/index.phtml:26
 msgid "Enter a value for the fact"
 msgstr ""
 
-#: ../view/kmb-servers/index/index.phtml:28
+#: ../view/kmb-servers/index/index.phtml:31
 msgid "Search"
 msgstr ""
 
-#: ../view/kmb-servers/index/index.phtml:29
+#: ../view/kmb-servers/index/index.phtml:32
 msgid "Cancel"
 msgstr ""
 
-#: ../view/kmb-servers/index/index.phtml:36
+#: ../view/kmb-servers/index/index.phtml:39
 msgid "PuppetDB servers inventory"
 msgstr ""
 
-#: ../view/kmb-servers/index/index.phtml:39
+#: ../view/kmb-servers/index/index.phtml:43
 msgid "fields available to search"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:45
+msgid "Assign to environment"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:50
+msgid "OK"
 msgstr ""
 

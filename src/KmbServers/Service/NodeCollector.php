@@ -114,7 +114,7 @@ class NodeCollector implements CollectorInterface
 
         $nodesCollection = $this->getNodeService()->getAll($query, $offset, $limit, $orderBy);
 
-        return Collection::factory($nodesCollection->getNodes(), $nodesCollection->getTotal(), $nodesCollection->getTotal());
+        return Collection::factory($nodesCollection->getData(), $nodesCollection->getTotal(), $nodesCollection->getTotal());
     }
 
     /**
