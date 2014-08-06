@@ -17,5 +17,7 @@ class NodeCollectorFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('KmbServers\Service\NodeCollector', $service);
         $this->assertInstanceOf('KmbPuppetDb\Service\Node', $service->getNodeService());
+        $this->assertInstanceOf('KmbPuppetDb\Query\EnvironmentsQueryBuilderInterface', $service->getNodesEnvironmentsQueryBuilder());
+        $this->assertInstanceOf('KmbPermission\Service\EnvironmentInterface', $service->getPermissionEnvironmentService());
     }
 }

@@ -20,6 +20,8 @@
  */
 namespace KmbServers\Service;
 
+use KmbPermission\Service\EnvironmentInterface;
+use KmbPuppetDb\Query\EnvironmentsQueryBuilderInterface;
 use KmbPuppetDb\Service;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -35,9 +37,19 @@ class NodeCollectorFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $service = new NodeCollector();
+
         /** @var Service\Node $nodeService */
         $nodeService = $serviceLocator->get('KmbPuppetDb\Service\Node');
         $service->setNodeService($nodeService);
+
+        /** @var EnvironmentsQueryBuilderInterface $nodesEnvironmentsQueryBuilder */
+        $nodesEnvironmentsQueryBuilder = $serviceLocator->get('KmbPuppetDb\Query\NodesEnvironmentsQueryBuilder');
+        $service->setNodesEnvironmentsQueryBuilder($nodesEnvironmentsQueryBuilder);
+
+        /** @var EnvironmentInterface $permissionEnvironmentService */
+        $permissionEnvironmentService = $serviceLocator->get('KmbPermission\Service\Environment');
+        $service->setPermissionEnvironmentService($permissionEnvironmentService);
+
         return $service;
     }
 }

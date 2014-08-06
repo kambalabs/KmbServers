@@ -22,14 +22,20 @@ namespace KmbServers\Service;
 
 use GtnDataTables\Model\Collection;
 use GtnDataTables\Service\CollectorInterface;
-use KmbDomain\Model\EnvironmentInterface;
 use KmbPuppetDb\Model\NodeInterface;
+use KmbPuppetDb\Query\EnvironmentsQueryBuilderInterface;
 use KmbPuppetDb\Service;
 
 class NodeCollector implements CollectorInterface
 {
-    /** @var Service\Node */
+    /** @var Service\NodeInterface */
     protected $nodeService;
+
+    /** @var EnvironmentsQueryBuilderInterface */
+    protected $nodesEnvironmentsQueryBuilder;
+
+    /** @var \KmbPermission\Service\Environment */
+    protected $permissionEnvironmentService;
 
     /**
      * @param array $params
@@ -40,15 +46,10 @@ class NodeCollector implements CollectorInterface
         $offset = isset($params['start']) ? $params['start'] : null;
         $limit = isset($params['length']) ? $params['length'] : null;
 
+        $environments = $this->permissionEnvironmentService->getAllReadable(isset($params['environment']) ? $params['environment'] : null);
         $queryEnvironment = null;
-        if (isset($params['environment'])) {
-            /** @var EnvironmentInterface $environment */
-            $environment = $params['environment'];
-            $queryEnvironment = [
-                '=',
-                ['fact', NodeInterface::ENVIRONMENT_FACT],
-                $environment->getNormalizedName()
-            ];
+        if (!empty($environments)) {
+            $queryEnvironment = $this->nodesEnvironmentsQueryBuilder->build($environments)->getData();
         }
 
         $queryFactFilter = null;
@@ -120,7 +121,7 @@ class NodeCollector implements CollectorInterface
     /**
      * Get NodeService.
      *
-     * @return \KmbPuppetDb\Service\Node
+     * @return \KmbPuppetDb\Service\NodeInterface
      */
     public function getNodeService()
     {
@@ -130,12 +131,56 @@ class NodeCollector implements CollectorInterface
     /**
      * Set NodeService.
      *
-     * @param \KmbPuppetDb\Service\Node $nodeService
+     * @param \KmbPuppetDb\Service\NodeInterface $nodeService
      * @return NodeCollector
      */
     public function setNodeService($nodeService)
     {
         $this->nodeService = $nodeService;
         return $this;
+    }
+
+    /**
+     * Set NodesEnvironmentsQueryBuilder.
+     *
+     * @param \KmbPuppetDb\Query\EnvironmentsQueryBuilderInterface $nodesEnvironmentsQueryBuilder
+     * @return NodeCollector
+     */
+    public function setNodesEnvironmentsQueryBuilder($nodesEnvironmentsQueryBuilder)
+    {
+        $this->nodesEnvironmentsQueryBuilder = $nodesEnvironmentsQueryBuilder;
+        return $this;
+    }
+
+    /**
+     * Get NodesEnvironmentsQueryBuilder.
+     *
+     * @return \KmbPuppetDb\Query\EnvironmentsQueryBuilderInterface
+     */
+    public function getNodesEnvironmentsQueryBuilder()
+    {
+        return $this->nodesEnvironmentsQueryBuilder;
+    }
+
+    /**
+     * Set PermissionEnvironmentService.
+     *
+     * @param \KmbPermission\Service\Environment $permissionEnvironmentService
+     * @return NodeCollector
+     */
+    public function setPermissionEnvironmentService($permissionEnvironmentService)
+    {
+        $this->permissionEnvironmentService = $permissionEnvironmentService;
+        return $this;
+    }
+
+    /**
+     * Get PermissionEnvironmentService.
+     *
+     * @return \KmbPermission\Service\Environment
+     */
+    public function getPermissionEnvironmentService()
+    {
+        return $this->permissionEnvironmentService;
     }
 }

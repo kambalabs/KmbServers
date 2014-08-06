@@ -25,7 +25,6 @@ use KmbDomain\Model\EnvironmentInterface;
 use KmbDomain\Model\EnvironmentRepositoryInterface;
 use KmbPuppetDb\Service\NodeInterface;
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Stdlib\ArrayUtils;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
