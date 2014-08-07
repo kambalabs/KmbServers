@@ -44,7 +44,7 @@ class NodeNameDecorator extends AbstractDecorator
             $this->url(
                 'server',
                 ['hostname' => $object->getName(), 'action' => 'show'],
-                ['query' => ['back' => $this->url('servers', [], [], true)]],
+                ['query' => ['back' => $this->url('servers', ['action' => 'index'], [], true)]],
                 true
             ) .
             '" class="show-server" data-rel="tooltip" data-placement="right" data-original-title="' .
