@@ -41,6 +41,7 @@
         <form class="form-inline" role="form" id="set-environment-form" action="<?php echo $this->url('servers', ['action' => 'assign-to-environment'], [], true) ?>" method="post">
             <?php echo $this->datatable('servers_datatable')->renderHtml(); ?>
             <p class="pull-right">* <?php echo $this->translate('fields available to search'); ?></p>
+            <?php if ($this->isGranted('assignServersToEnv')): ?>
             <div class="input-group">
                 <select id="environment" class="form-control" name="environment" data-placeholder="<?php echo $this->translate('Assign to environment') ?>" data-rel="chosen" style="display: none;">
                     <option></option>
@@ -50,6 +51,7 @@
                     <button class="btn btn-primary" type="submit"><?php echo $this->translate('OK') ?></button>
                 </div>
             </div>
+            <?php endif ?>
         </form>
     </div>
 </div>
