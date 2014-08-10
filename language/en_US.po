@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kamba\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-04 16:33+0100\n"
-"PO-Revision-Date: 2014-08-04 16:33+0100\n"
+"POT-Creation-Date: 2014-08-11 00:41+0100\n"
+"PO-Revision-Date: 2014-08-11 00:41+0100\n"
 "Last-Translator: Emmanuel Bouton <goten4@gmail.com>\n"
 "Language-Team: Kamba Contibutors <devteam@kamba.org>\n"
 "Language: \n"
@@ -17,8 +17,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../src/KmbServers/Controller/IndexController.php:109
-msgid "The servers has been succesfully assigned to environment "
+#: ../src/KmbServers/Controller/IndexController.php:108
+#, php-format
+msgid "The servers has been succesfully assigned to environment %s"
 msgstr ""
 
 #: ../src/KmbServers/View/Decorator/NodeEnvironmentDecorator.php:33
@@ -117,11 +118,11 @@ msgstr ""
 msgid "fields available to search"
 msgstr ""
 
-#: ../view/kmb-servers/index/index.phtml:45
+#: ../view/kmb-servers/index/index.phtml:46
 msgid "Assign to environment"
 msgstr ""
 
-#: ../view/kmb-servers/index/index.phtml:50
+#: ../view/kmb-servers/index/index.phtml:51
 msgid "OK"
 msgstr ""
 
