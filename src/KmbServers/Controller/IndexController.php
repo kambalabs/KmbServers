@@ -51,7 +51,7 @@ class IndexController extends AbstractActionController
         $datatable = $this->getServiceLocator()->get('servers_datatable');
         if ($viewModel instanceof JsonModel) {
             $params = $this->params()->fromQuery();
-            $environment = $this->getEnvironmentRepository()->getById($this->params()->fromRoute('envId'));
+            $environment = $this->environmentRepository->getById($this->params()->fromRoute('envId'));
             if ($environment !== null) {
                 $params['environment'] = $environment;
             }
@@ -69,7 +69,7 @@ class IndexController extends AbstractActionController
 
     public function showAction()
     {
-        $node = $this->getServiceLocator()->get('KmbPuppetDb\Service\Node')->getByName($this->params('hostname'));
+        $node = $this->nodeService->getByName($this->params('hostname'));
         return new ViewModel(array(
             'node' => $node,
             'back' => $this->params()->fromQuery('back'),
@@ -78,7 +78,7 @@ class IndexController extends AbstractActionController
 
     public function factsAction()
     {
-        $node = $this->getServiceLocator()->get('KmbPuppetDb\Service\Node')->getByName($this->params('hostname'));
+        $node = $this->nodeService->getByName($this->params('hostname'));
         $escapeHtml = $this->getServiceLocator()->get('viewhelpermanager')->get('escapeHtml');
         $data = array();
         foreach ($node->getFacts() as $fact => $value) {
@@ -96,12 +96,11 @@ class IndexController extends AbstractActionController
             return $this->notFoundAction();
         }
 
-        $nodeService = $this->getNodeService();
         foreach ($this->params()->fromPost('nodes', []) as $nodeName) {
-            $node = $nodeService->getByName($nodeName);
+            $node = $this->nodeService->getByName($nodeName);
             if ($node !== null) {
                 $node->setEnvironment($environment->getNormalizedName());
-                $nodeService->replaceFacts($node);
+                $this->nodeService->replaceFacts($node);
             }
         }
 
