@@ -24,6 +24,7 @@ use GtnDataTables\Service\DataTable;
 use KmbDomain\Model\EnvironmentInterface;
 use KmbDomain\Model\EnvironmentRepositoryInterface;
 use KmbPuppetDb\Service\NodeInterface;
+use Zend\Log\Logger;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
@@ -36,8 +37,12 @@ class IndexController extends AbstractActionController
     /** @var NodeInterface */
     protected $nodeService;
 
+    /** @var Logger */
+    protected $logger;
+
     public function indexAction()
     {
+        $this->debug('KmbServers/IndexController::indexAction()');
         $viewModel = $this->acceptableViewModelSelector(array(
             'Zend\View\Model\ViewModel' => array(
                 'text/html',
@@ -47,9 +52,9 @@ class IndexController extends AbstractActionController
             ),
         ));
 
-        /** @var DataTable $datatable */
-        $datatable = $this->getServiceLocator()->get('servers_datatable');
         if ($viewModel instanceof JsonModel) {
+            /** @var DataTable $datatable */
+            $datatable = $this->getServiceLocator()->get('servers_datatable');
             $params = $this->params()->fromQuery();
             $environment = $this->environmentRepository->getById($this->params()->fromRoute('envId'));
             if ($environment !== null) {
@@ -69,6 +74,7 @@ class IndexController extends AbstractActionController
 
     public function showAction()
     {
+        $this->debug('KmbServers/IndexController::showAction(' . $this->params('hostname') . ')');
         $node = $this->nodeService->getByName($this->params('hostname'));
         return new ViewModel(array(
             'node' => $node,
@@ -78,6 +84,7 @@ class IndexController extends AbstractActionController
 
     public function factsAction()
     {
+        $this->debug('KmbServers/IndexController::factsAction(' . $this->params('hostname') . ')');
         $node = $this->nodeService->getByName($this->params('hostname'));
         $escapeHtml = $this->getServiceLocator()->get('viewhelpermanager')->get('escapeHtml');
         $data = array();
@@ -150,5 +157,18 @@ class IndexController extends AbstractActionController
     public function getNodeService()
     {
         return $this->nodeService;
+    }
+
+    /**
+     * @param string $message
+     * @return IndexController
+     */
+    public function debug($message)
+    {
+        if ($this->logger == null) {
+            $this->logger = $this->getServiceLocator()->get('Logger');
+        }
+        $this->logger->debug($message);
+        return $this;
     }
 }
