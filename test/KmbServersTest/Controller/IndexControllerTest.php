@@ -91,20 +91,20 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->assertResponseStatusCode(200);
         $this->assertControllerName('KmbServers\Controller\Index');
         $this->assertActionName('facts');
-        $this->assertEquals(array(
-            'data' => array(
-                array('uptime_days', '<pre>477</pre>'),
-                array('operatingsystem', '<pre>Debian</pre>'),
-                array('kernelversion', '<pre>2.6.32</pre>'),
-                array('lsbdistcodename', '<pre>wheezy</pre>'),
-                array('lsbdistdescription', '<pre>Debian GNU/Linux 7.3 (wheezy)</pre>'),
-                array('processorcount', '<pre>4</pre>'),
-                array('memorysize', '<pre>2.00 GB</pre>'),
-                array('uptime', '<pre>477 days</pre>'),
-                array('pf', '<pre>TEST</pre>'),
-                array('hostname', '<pre>node1</pre>'),
-            )
-        ), (array)Json::decode($this->getResponse()->getContent()));
+        $this->assertEquals([
+            'data' => [
+                ['uptime_days', '<pre>477</pre>'],
+                ['operatingsystem', '<pre>Debian</pre>'],
+                ['kernelversion', '<pre>2.6.32</pre>'],
+                ['lsbdistcodename', '<pre>wheezy</pre>'],
+                ['lsbdistdescription', '<pre>Debian GNU/Linux 7.3 (wheezy)</pre>'],
+                ['processorcount', '<pre>4</pre>'],
+                ['memorysize', '<pre>2.00 GB</pre>'],
+                ['uptime', '<pre>477 days</pre>'],
+                ['pf', '<pre>TEST</pre>'],
+                ['hostname', '<pre>node1</pre>'],
+            ]
+        ], (array)Json::decode($this->getResponse()->getContent()));
     }
 
     /** @test */

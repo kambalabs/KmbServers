@@ -25,7 +25,7 @@ use Zend\View\Helper\AbstractHelper;
 
 class NodeBtnClass extends AbstractHelper
 {
-    public function __invoke(Model\Node $node)
+    public function __invoke(Model\NodeInterface $node)
     {
         if ($node->getReportedAt() != null && $node->getReportedAt()->diff(new \DateTime())->days >= 1) {
             return 'btn-primary';

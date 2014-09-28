@@ -41,7 +41,7 @@ class FormatNodeReportTime extends AbstractHelper
      */
     protected $timezone;
 
-    public function __invoke(Model\Node $node)
+    public function __invoke(Model\NodeInterface $node)
     {
         if ($node->getReportedAt() == null) {
             return '??:??:??';
