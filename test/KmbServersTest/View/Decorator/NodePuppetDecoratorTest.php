@@ -25,6 +25,6 @@ class NodePuppetDecoratorTest extends AbstractDecoratorTestCase
     public function canDecorateValue()
     {
         $node = new Node('node1.local', NodeInterface::UNCHANGED, new \DateTime('2014-01-31T10:00:00'));
-        $this->assertEquals('<button class="btn btn-xs btn-primary label-uniform-large puppet-reports">> 24h</button>', $this->decorator->decorateValue($node));
+        $this->assertEquals('<a href="#" class="btn btn-xs btn-primary label-uniform-large puppet-reports">> 24h</a>', $this->decorator->decorateValue($node));
     }
 }
