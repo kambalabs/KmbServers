@@ -23,7 +23,7 @@ namespace KmbServers\Service;
 use GtnDataTables\Model\Collection;
 use GtnDataTables\Service\CollectorInterface;
 use KmbPuppetDb\Model\NodeInterface;
-use KmbPuppetDb\Query\EnvironmentsQueryBuilderInterface;
+use KmbPuppetDb\Query\QueryBuilderInterface;
 use KmbPuppetDb\Service;
 
 class NodeCollector implements CollectorInterface
@@ -31,7 +31,7 @@ class NodeCollector implements CollectorInterface
     /** @var Service\NodeInterface */
     protected $nodeService;
 
-    /** @var EnvironmentsQueryBuilderInterface */
+    /** @var QueryBuilderInterface */
     protected $nodesEnvironmentsQueryBuilder;
 
     /** @var \KmbPermission\Service\Environment */

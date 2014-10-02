@@ -96,7 +96,7 @@ return [
                 ],
                 [
                     'decorator' => 'KmbServers\View\Decorator\NodeNameDecorator',
-                    'key' => 'name',
+                    'key' => 'certname',
                 ],
                 [
                     'decorator' => 'KmbServers\View\Decorator\NodeEnvironmentDecorator',
@@ -121,7 +121,7 @@ return [
                 ],
                 [
                     'decorator' => 'KmbServers\View\Decorator\NodePuppetDecorator',
-                    'key' => 'facts-timestamp',
+                    'key' => 'facts_timestamp',
                 ],
             ]
         ]
