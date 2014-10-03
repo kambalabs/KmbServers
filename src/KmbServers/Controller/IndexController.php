@@ -52,6 +52,7 @@ class IndexController extends AbstractActionController
             ),
         ));
 
+        $variables = [];
         if ($viewModel instanceof JsonModel) {
             /** @var DataTable $datatable */
             $datatable = $this->getServiceLocator()->get('servers_datatable');
@@ -61,15 +62,25 @@ class IndexController extends AbstractActionController
                 $params['environment'] = $environment;
             }
             $result = $datatable->getResult($params);
-            $viewModel->setVariable('draw', $result->getDraw());
-            $viewModel->setVariable('recordsTotal', $result->getRecordsTotal());
-            $viewModel->setVariable('recordsFiltered', $result->getRecordsFiltered());
-            $viewModel->setVariable('data', $result->getData());
-        } else {
-            $viewModel->setVariable('facts', $this->getServiceLocator()->get('KmbPuppetDb\Service\FactNames')->getAll());
+            $variables = [
+                'draw' => $result->getDraw(),
+                'recordsTotal' => $result->getRecordsTotal(),
+                'recordsFiltered' => $result->getRecordsFiltered(),
+                'data' => $result->getData(),
+            ];
         }
 
-        return $viewModel;
+        return $viewModel->setVariables($variables);
+    }
+
+    public function factNamesAction()
+    {
+        $escapeHtml = $this->getServiceLocator()->get('ViewHelperManager')->get('escapeHtml');
+        return new JsonModel([
+            'facts' => array_map(function ($fact) use ($escapeHtml) {
+                return $escapeHtml($fact);
+            }, $this->getServiceLocator()->get('KmbPuppetDb\Service\FactNames')->getAll())
+        ]);
     }
 
     public function showAction()
@@ -160,15 +171,36 @@ class IndexController extends AbstractActionController
     }
 
     /**
+     * Set Logger.
+     *
+     * @param \Zend\Log\Logger $logger
+     * @return IndexController
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+        return $this;
+    }
+
+    /**
+     * Get Logger.
+     *
+     * @return \Zend\Log\Logger
+     */
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
+    /**
      * @param string $message
      * @return IndexController
      */
     public function debug($message)
     {
-        if ($this->logger == null) {
-            $this->logger = $this->getServiceLocator()->get('Logger');
+        if ($this->logger != null) {
+            $this->logger->debug($message);
         }
-        $this->logger->debug($message);
         return $this;
     }
 }

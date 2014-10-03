@@ -36,16 +36,6 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
     /** @test */
     public function canGetIndex()
     {
-        $this->dispatch('/servers');
-
-        $this->assertResponseStatusCode(200);
-        $this->assertControllerName('KmbServers\Controller\Index');
-        $this->assertQueryContentContains('#servers th', 'OS *');
-    }
-
-    /** @test */
-    public function canGetIndexInJson()
-    {
         $this->getRequest()->getHeaders()->addHeaderLine('Accept', 'application/json');
 
         $this->dispatch('/servers?draw=1');
@@ -55,6 +45,32 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $response = (array)Json::decode($this->getResponse()->getContent());
         $this->assertEquals(9, count($response['data']));
         $this->assertEquals('Debian', $response['data'][0][3]);
+    }
+
+    /** @test */
+    public function canGetFactNames()
+    {
+        $this->getRequest()->getHeaders()->addHeaderLine('Accept', 'application/json');
+
+        $this->dispatch('/servers/fact-names');
+
+        $this->assertResponseStatusCode(200);
+        $this->assertControllerName('KmbServers\Controller\Index');
+        $response = Json::decode($this->getResponse()->getContent(), Json::TYPE_ARRAY);
+        $this->assertEquals([
+            'facts' => [
+                "kernel",
+                "operatingsystem",
+                "osfamily",
+                "uptime",
+                "uptime_days",
+                "hostname",
+                "lsbdistcodename",
+                "lsbdistdescription",
+                "pf",
+                "memorysize",
+            ],
+        ], $response);
     }
 
     /** @test */

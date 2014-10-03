@@ -74,7 +74,7 @@ return [
             'ZfcRbac\Guard\ControllerGuard' => [
                 [
                     'controller' => 'KmbServers\Controller\Index',
-                    'actions' => ['index', 'show', 'facts'],
+                    'actions' => ['index', 'show', 'facts', 'fact-names'],
                     'roles' => ['user']
                 ],
                 [
@@ -125,5 +125,12 @@ return [
                 ],
             ]
         ]
+    ],
+    'asset_manager' => [
+        'resolver_configs' => [
+            'paths' => [
+                __DIR__ . '/../public',
+            ],
+        ],
     ],
 ];

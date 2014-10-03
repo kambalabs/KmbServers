@@ -23,6 +23,7 @@ namespace KmbServers\Service;
 use KmbDomain\Model\EnvironmentRepositoryInterface;
 use KmbPuppetDb\Service\NodeInterface;
 use KmbServers\Controller\IndexController;
+use Zend\Log\Logger;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -49,6 +50,10 @@ class IndexControllerFactory implements FactoryInterface
         /** @var NodeInterface $nodeService */
         $nodeService = $serviceManager->get('KmbPuppetDb\Service\Node');
         $controller->setNodeService($nodeService);
+
+        /** @var Logger $logger */
+        $logger = $serviceManager->get('Logger');
+        $controller->setLogger($logger);
 
         return $controller;
     }
