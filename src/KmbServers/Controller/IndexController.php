@@ -42,7 +42,6 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        $this->debug('KmbServers/IndexController::indexAction()');
         $viewModel = $this->acceptableViewModelSelector(array(
             'Zend\View\Model\ViewModel' => array(
                 'text/html',
@@ -85,7 +84,6 @@ class IndexController extends AbstractActionController
 
     public function showAction()
     {
-        $this->debug('KmbServers/IndexController::showAction(' . $this->params('hostname') . ')');
         $node = $this->nodeService->getByName($this->params('hostname'));
         return new ViewModel(array(
             'node' => $node,
@@ -95,7 +93,6 @@ class IndexController extends AbstractActionController
 
     public function factsAction()
     {
-        $this->debug('KmbServers/IndexController::factsAction(' . $this->params('hostname') . ')');
         $node = $this->nodeService->getByName($this->params('hostname'));
         $escapeHtml = $this->getServiceLocator()->get('viewhelpermanager')->get('escapeHtml');
         $data = array();

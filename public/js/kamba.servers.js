@@ -8,5 +8,6 @@ $(window).load(function () {
         $.each(data.facts, function (index, val) {
             $('#fact').append('<option>' + val + '</option>');
         });
+        $('#fact').trigger("chosen:updated");
     });
 });
