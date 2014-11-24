@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kamba\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-29 00:44+0100\n"
-"PO-Revision-Date: 2014-09-29 00:44+0100\n"
+"POT-Creation-Date: 2014-11-24 11:29+0100\n"
+"PO-Revision-Date: 2014-11-24 11:29+0100\n"
 "Last-Translator: Emmanuel Bouton <goten4@gmail.com>\n"
 "Language-Team: Kamba Contibutors <devteam@kamba.org>\n"
 "Language: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../src/KmbServers/Controller/IndexController.php:114
+#: ../src/KmbServers/Controller/IndexController.php:123
 #, php-format
 msgid "The servers has been succesfully assigned to environment %s"
 msgstr "Les serveurs ont bien été affecté à l'environnement %s"
@@ -81,48 +81,48 @@ msgid "Server facts"
 msgstr "Facts du serveur"
 
 #: ../view/kmb-servers/index/show.phtml:29
-#: ../view/kmb-servers/index/index.phtml:10
+#: ../view/kmb-servers/index/index.phtml:11
 msgid "Fact"
 msgstr "Fact"
 
 #: ../view/kmb-servers/index/show.phtml:30
-#: ../view/kmb-servers/index/index.phtml:23
+#: ../view/kmb-servers/index/index.phtml:21
 msgid "Value"
 msgstr "Valeur"
 
-#: ../view/kmb-servers/index/index.phtml:5
+#: ../view/kmb-servers/index/index.phtml:6
 msgid "Filter servers by fact"
 msgstr "Filtrer les serveurs par fact"
 
-#: ../view/kmb-servers/index/index.phtml:13
+#: ../view/kmb-servers/index/index.phtml:14
 msgid "Select a fact..."
 msgstr "Sélectionnez un fact..."
 
-#: ../view/kmb-servers/index/index.phtml:26
+#: ../view/kmb-servers/index/index.phtml:24
 msgid "Enter a value for the fact"
 msgstr "Saisissez une valeur pour le fact"
 
-#: ../view/kmb-servers/index/index.phtml:31
+#: ../view/kmb-servers/index/index.phtml:29
 msgid "Search"
 msgstr "Rechercher"
 
-#: ../view/kmb-servers/index/index.phtml:32
+#: ../view/kmb-servers/index/index.phtml:30
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../view/kmb-servers/index/index.phtml:39
+#: ../view/kmb-servers/index/index.phtml:37
 msgid "PuppetDB servers inventory"
 msgstr "Serveurs dans l'inventaire PuppetDB"
 
-#: ../view/kmb-servers/index/index.phtml:43
+#: ../view/kmb-servers/index/index.phtml:41
 msgid "fields available to search"
 msgstr "champs disponibles à la recherche"
 
-#: ../view/kmb-servers/index/index.phtml:46
+#: ../view/kmb-servers/index/index.phtml:44
 msgid "Assign to environment"
 msgstr "Affecter à l'environnement"
 
-#: ../view/kmb-servers/index/index.phtml:51
+#: ../view/kmb-servers/index/index.phtml:49
 msgid "OK"
 msgstr "OK"
 
