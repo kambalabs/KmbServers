@@ -51,6 +51,16 @@ return [
             'KmbServers\Controller\Index' => 'KmbServers\Service\IndexControllerFactory'
         ],
     ],
+    'navigation' => [
+        'default' => [
+            [
+                'label' => 'Servers',
+                'route' => 'servers',
+                'useRouteMatch' => true,
+                'tabindex' => 40,
+            ],
+        ],
+    ],
     'view_helpers' => [
         'invokables' => [
             'formatNodeReportTime' => 'KmbServers\View\Helper\FormatNodeReportTime',
