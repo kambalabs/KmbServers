@@ -11,8 +11,7 @@ $(window).load(function () {
         $('#fact').trigger("chosen:updated");
     });
 
-    var serversTable = $('#servers').dataTable($.extend({}, DATATABLES_DEFAULT_SETTING, {
-        "processing": true,
+    var serversTable = $('#servers').dataTable($.extend({}, DATATABLES_NPROGRESS_DEFAULT_SETTINGS, {
         "serverSide": true,
         "ajax": {
             "url": window.location,
@@ -20,9 +19,13 @@ $(window).load(function () {
                 data.factName = $('#fact').val();
                 data.factValue = $('#value').val();
             },
+            "complete": function() {
+                NProgress.done();
+            },
             "error": function (cause) {
                 console.log('Could not get servers list : ' + cause.statusText);
                 $('#servers_processing').hide();
+                NProgress.done();
             }
         },
         "order": [
@@ -66,7 +69,17 @@ $(window).load(function () {
         return false;
     });
 
-    $('#facts').dataTable($.extend({}, DATATABLES_DEFAULT_SETTING, {
-        "sAjaxSource": document.URL.replace(/(\/show)?(\?.*)?$/gm, '') + '/facts'
+    $('#facts').dataTable($.extend({}, DATATABLES_NPROGRESS_DEFAULT_SETTINGS, {
+        "ajax": {
+            "url": document.URL.replace(/(\/show)?(\?.*)?$/gm, '') + '/facts',
+            "complete": function() {
+                NProgress.done();
+            },
+            "error": function (cause) {
+                console.log('Could not get facts list : ' + cause.statusText);
+                NProgress.done();
+                $('#facts_processing').hide();
+            }
+        }
     }));
 });

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kamba\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-24 11:29+0100\n"
-"PO-Revision-Date: 2014-11-24 11:29+0100\n"
+"POT-Creation-Date: 2014-11-27 12:40+0100\n"
+"PO-Revision-Date: 2014-11-27 12:40+0100\n"
 "Last-Translator: Emmanuel Bouton <goten4@gmail.com>\n"
 "Language-Team: Kamba Contibutors <devteam@kamba.org>\n"
 "Language: \n"
@@ -58,34 +58,38 @@ msgstr "Puppet"
 msgid "Server"
 msgstr "Serveur"
 
-#: ../view/kmb-servers/index/show.phtml:4
+#: ../config/module.config.php:59
+msgid "Servers"
+msgstr "Serveurs"
+
+#: ../view/kmb-servers/index/show.phtml:5
 msgid "Detailed informations on server"
 msgstr "Informations détaillées sur le serveur"
 
-#: ../view/kmb-servers/index/show.phtml:12
+#: ../view/kmb-servers/index/show.phtml:13
 msgid "back"
 msgstr "retour"
 
-#: ../view/kmb-servers/index/show.phtml:16
+#: ../view/kmb-servers/index/show.phtml:17
 msgid "day"
 msgid_plural "days"
 msgstr[0] "jour"
 msgstr[1] "jours"
 
-#: ../view/kmb-servers/index/show.phtml:17
+#: ../view/kmb-servers/index/show.phtml:18
 msgid "uptime"
 msgstr "uptime"
 
-#: ../view/kmb-servers/index/show.phtml:24
+#: ../view/kmb-servers/index/show.phtml:25
 msgid "Server facts"
 msgstr "Facts du serveur"
 
-#: ../view/kmb-servers/index/show.phtml:29
+#: ../view/kmb-servers/index/show.phtml:30
 #: ../view/kmb-servers/index/index.phtml:11
 msgid "Fact"
 msgstr "Fact"
 
-#: ../view/kmb-servers/index/show.phtml:30
+#: ../view/kmb-servers/index/show.phtml:31
 #: ../view/kmb-servers/index/index.phtml:21
 msgid "Value"
 msgstr "Valeur"
