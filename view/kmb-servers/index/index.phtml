@@ -1,7 +1,4 @@
 <?php $this->inlineScript()->prependFile($this->basePath() . '/js/kmb.servers.js'); ?>
-<?php echo $this->flashMessenger()->render('success', ['alert', 'alert-success']) ?>
-<?php echo $this->flashMessenger()->render('warning', ['alert', 'alert-warning']) ?>
-<?php echo $this->flashMessenger()->render('error', ['alert', 'alert-danger']) ?>
 <div class="panel panel-default">
     <div class="panel-heading collapsed" data-toggle="collapse" data-target="#factfilter"><span class="glyphicon glyphicon-search"></span><span class="panel-break"></span><?php echo $this->translate("Filter servers by fact") ?></div>
     <div class="panel-body collapse" id="factfilter">
