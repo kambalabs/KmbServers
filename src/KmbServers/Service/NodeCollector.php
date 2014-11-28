@@ -22,6 +22,7 @@ namespace KmbServers\Service;
 
 use GtnDataTables\Model\Collection;
 use GtnDataTables\Service\CollectorInterface;
+use KmbDomain\Model\Environment;
 use KmbPuppetDb\Model\NodeInterface;
 use KmbPuppetDb\Query\QueryBuilderInterface;
 use KmbPuppetDb\Service;
@@ -73,11 +74,7 @@ class NodeCollector implements CollectorInterface
                     ['fact', 'hostname'],
                     $search
                 ],
-                [
-                    '~',
-                    ['fact', NodeInterface::ENVIRONMENT_FACT],
-                    $search
-                ],
+                $this->nodesEnvironmentsQueryBuilder->build([new Environment($search)], '~')->getData(),
                 [
                     '~',
                     ['fact', 'operatingsystem'],
