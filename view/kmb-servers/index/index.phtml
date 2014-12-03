@@ -38,7 +38,7 @@
             <p class="note pull-right"><strong>*</strong> <?php echo $this->translate('fields available to search'); ?></p>
             <?php if ($this->isGranted('assignServersToEnv')): ?>
             <div class="input-group">
-                <select id="environment" class="form-control" name="environment" data-placeholder="<?php echo $this->translate('Assign to environment') ?>" data-rel="chosen" style="display: none;">
+                <select id="environment" class="form-control open-up" name="environment" data-placeholder="<?php echo $this->translate('Assign to environment') ?>" data-rel="chosen" style="display: none;">
                     <option></option>
                     <?php echo $this->environmentSelect('readEnv') ?>
                 </select>
