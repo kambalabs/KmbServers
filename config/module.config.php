@@ -54,7 +54,7 @@ return [
         ],
     ],
     'navigation' => [
-        'default' => [
+        'navbar' => [
             [
                 'label' => $translate('Servers'),
                 'route' => 'servers',
