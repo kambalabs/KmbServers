@@ -55,7 +55,7 @@ return [
     ],
     'navigation' => [
         'navbar' => [
-            [
+            'servers' => [
                 'label' => $translate('Servers'),
                 'route' => 'servers',
                 'action' => 'index',
