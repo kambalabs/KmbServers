@@ -17,8 +17,10 @@
             <div class="yellow" id="uptime_server"><?php echo $this->escapeHtml($this->node->getFact('uptime_days')) ?> <?php echo $this->translatePlural('day', 'days', $this->node->getFact('uptime_days')) ?></div>
             <div class="stats-title"><button class="btn btn-warning btn-disabled"><?php echo $this->translate('uptime') ?></button></div>
         </div>
+        <?php echo $this->widget()->render('serverInfoBar', ['environment' => $this->environment,'node' => $this->node]); ?>
     </div>
     <hr/>
+    <?php echo $this->widget()->render('serverPanels', ['environment' => $this->environment,'node' => $this->node]); ?>
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">

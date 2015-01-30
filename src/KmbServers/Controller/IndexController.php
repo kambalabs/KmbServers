@@ -85,9 +85,11 @@ class IndexController extends AbstractActionController implements AuthenticatedC
 
     public function showAction()
     {
+        $environment = $this->environmentRepository->getById($this->params()->fromRoute('envId'));
         $node = $this->nodeService->getByName($this->params('hostname'));
         return new ViewModel(array(
             'node' => $node,
+            'environment' => $environment,
             'back' => $this->params()->fromQuery('back'),
         ));
     }

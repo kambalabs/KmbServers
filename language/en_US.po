@@ -2,64 +2,109 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kamba\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-27 15:17+0100\n"
-"PO-Revision-Date: 2014-11-27 15:17+0100\n"
+"POT-Creation-Date: 2015-01-30 17:18+0100\n"
+"PO-Revision-Date: 2015-01-30 17:18+0100\n"
 "Last-Translator: Emmanuel Bouton <goten4@gmail.com>\n"
 "Language-Team: Kamba Contibutors <devteam@kamba.org>\n"
-"Language: \n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: translate;translatePlural:1,2\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: FRANCE\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../src/KmbServers/Controller/IndexController.php:123
+#: ../config/module.config.php:59
+msgid "Servers"
+msgstr ""
+
+#: ../src/KmbServers/Controller/IndexController.php:125
 #, php-format
 msgid "The servers has been succesfully assigned to environment %s"
-msgstr ""
-
-#: ../src/KmbServers/View/Decorator/NodeEnvironmentDecorator.php:33
-msgid "Environment"
-msgstr ""
-
-#: ../src/KmbServers/View/Decorator/NodeRAMDecorator.php:33
-msgid "RAM"
-msgstr ""
-
-#: ../src/KmbServers/View/Decorator/NodeDistribDecorator.php:33
-msgid "Distrib"
-msgstr ""
-
-#: ../src/KmbServers/View/Decorator/NodeKernelDecorator.php:33
-msgid "Kernel"
-msgstr ""
-
-#: ../src/KmbServers/View/Decorator/NodeOSDecorator.php:33
-msgid "OS"
 msgstr ""
 
 #: ../src/KmbServers/View/Decorator/NodeCPUDecorator.php:33
 msgid "CPU"
 msgstr ""
 
-#: ../src/KmbServers/View/Decorator/NodeUptimeDecorator.php:33
-msgid "Uptime"
+#: ../src/KmbServers/View/Decorator/NodeDistribDecorator.php:33
+msgid "Distrib"
 msgstr ""
 
-#: ../src/KmbServers/View/Decorator/NodePuppetDecorator.php:33
-msgid "Puppet"
+#: ../src/KmbServers/View/Decorator/NodeEnvironmentDecorator.php:33
+msgid "Environment"
+msgstr ""
+
+#: ../src/KmbServers/View/Decorator/NodeKernelDecorator.php:33
+msgid "Kernel"
 msgstr ""
 
 #: ../src/KmbServers/View/Decorator/NodeNameDecorator.php:33
 msgid "Server"
 msgstr ""
 
-#: ../config/module.config.php:59
-msgid "Servers"
+#: ../src/KmbServers/View/Decorator/NodeOSDecorator.php:33
+msgid "OS"
+msgstr ""
+
+#: ../src/KmbServers/View/Decorator/NodePuppetDecorator.php:33
+msgid "Puppet"
+msgstr ""
+
+#: ../src/KmbServers/View/Decorator/NodeRAMDecorator.php:33
+msgid "RAM"
+msgstr ""
+
+#: ../src/KmbServers/View/Decorator/NodeUptimeDecorator.php:33
+msgid "Uptime"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:3
+msgid "Filter servers by fact"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:8
+#: ../view/kmb-servers/index/show.phtml:32
+msgid "Fact"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:11
+msgid "Select a fact..."
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:18
+#: ../view/kmb-servers/index/show.phtml:33
+msgid "Value"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:21
+msgid "Enter a value for the fact"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:26
+msgid "Search"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:27
+msgid "Cancel"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:34
+msgid "PuppetDB servers inventory"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:38
+msgid "fields available to search"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:41
+msgid "Assign to environment"
+msgstr ""
+
+#: ../view/kmb-servers/index/index.phtml:46
+msgid "OK"
 msgstr ""
 
 #: ../view/kmb-servers/index/show.phtml:5
@@ -80,53 +125,6 @@ msgstr[1] ""
 msgid "uptime"
 msgstr ""
 
-#: ../view/kmb-servers/index/show.phtml:25
+#: ../view/kmb-servers/index/show.phtml:27
 msgid "Server facts"
 msgstr ""
-
-#: ../view/kmb-servers/index/show.phtml:30
-#: ../view/kmb-servers/index/index.phtml:11
-msgid "Fact"
-msgstr ""
-
-#: ../view/kmb-servers/index/show.phtml:31
-#: ../view/kmb-servers/index/index.phtml:21
-msgid "Value"
-msgstr ""
-
-#: ../view/kmb-servers/index/index.phtml:6
-msgid "Filter servers by fact"
-msgstr ""
-
-#: ../view/kmb-servers/index/index.phtml:14
-msgid "Select a fact..."
-msgstr ""
-
-#: ../view/kmb-servers/index/index.phtml:24
-msgid "Enter a value for the fact"
-msgstr ""
-
-#: ../view/kmb-servers/index/index.phtml:29
-msgid "Search"
-msgstr ""
-
-#: ../view/kmb-servers/index/index.phtml:30
-msgid "Cancel"
-msgstr ""
-
-#: ../view/kmb-servers/index/index.phtml:37
-msgid "PuppetDB servers inventory"
-msgstr ""
-
-#: ../view/kmb-servers/index/index.phtml:41
-msgid "fields available to search"
-msgstr ""
-
-#: ../view/kmb-servers/index/index.phtml:44
-msgid "Assign to environment"
-msgstr ""
-
-#: ../view/kmb-servers/index/index.phtml:49
-msgid "OK"
-msgstr ""
-
