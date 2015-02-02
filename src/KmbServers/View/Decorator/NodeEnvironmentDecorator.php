@@ -35,9 +35,10 @@ class NodeEnvironmentDecorator extends AbstractDecorator
 
     /**
      * @param Node $object
+     * @param $context
      * @return string
      */
-    public function decorateValue($object)
+    public function decorateValue($object, $context = null)
     {
         return $this->escapeHtml($object->getEnvironment());
     }

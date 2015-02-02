@@ -35,9 +35,10 @@ class NodeCheckboxDecorator extends AbstractDecorator
 
     /**
      * @param NodeInterface $object
+     * @param $context
      * @return string
      */
-    public function decorateValue($object)
+    public function decorateValue($object, $context = null)
     {
         return '<input type="checkbox" name="nodes[]" class="select-node" value="' . $object->getName() .'" />';
     }

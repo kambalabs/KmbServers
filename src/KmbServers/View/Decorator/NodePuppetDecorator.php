@@ -35,9 +35,10 @@ class NodePuppetDecorator extends AbstractDecorator
 
     /**
      * @param Node $object
+     * @param $context
      * @return string
      */
-    public function decorateValue($object)
+    public function decorateValue($object, $context = null)
     {
         return '<a href="#" class="btn btn-xs ' . $this->nodeBtnClass($object) . ' label-uniform-large puppet-reports">' . $this->formatNodeReportTime($object) . '</a>';
     }
