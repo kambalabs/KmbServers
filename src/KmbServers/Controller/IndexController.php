@@ -87,11 +87,15 @@ class IndexController extends AbstractActionController implements AuthenticatedC
     {
         $environment = $this->environmentRepository->getById($this->params()->fromRoute('envId'));
         $node = $this->nodeService->getByName($this->params('hostname'));
-        return new ViewModel(array(
+        $model = new ViewModel([
             'node' => $node,
             'environment' => $environment,
             'back' => $this->params()->fromQuery('back'),
-        ));
+        ]);
+        $this->widget('serverInfoBar')->runActions($model);
+        $this->widget('serverTabTitle')->runActions($model);
+        $this->widget('serverTabContent')->runActions($model);
+        return $model;
     }
 
     public function factsAction()
