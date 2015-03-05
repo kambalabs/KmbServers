@@ -17,15 +17,14 @@
             <div class="yellow" id="uptime_server"><?php echo $this->escapeHtml($this->node->getFact('uptime_days')) ?> <?php echo $this->translatePlural('day', 'days', $this->node->getFact('uptime_days')) ?></div>
             <div class="stats-title"><button class="btn btn-warning btn-disabled"><?php echo $this->translate('uptime') ?></button></div>
         </div>
-        <?php echo $this->widget()->render('serverInfoBar', ['environment' => $this->environment, 'node' => $this->node]); ?>
+        <?php echo $this->widget('serverInfoBar')->render($this->viewModel()->getCurrent()); ?>
     </div>
     <hr/>
-    <?php echo $this->widget()->render('serverPanels', ['environment' => $this->environment, 'node' => $this->node]); ?>
     <div class="row">
         <div class="col-sm-12">
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#facts-list" role="tab" data-toggle="tab"><?php echo $this->translate('Server facts'); ?></a></li>
-                <?php echo $this->widget()->render('serverTabTitle', ['environment' => $this->environment, 'node' => $this->node]); ?>
+                <?php echo $this->widget('serverTabTitle')->render($this->viewModel()->getCurrent()); ?>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="facts-list">
@@ -40,7 +39,7 @@
                         </tbody>
                     </table>
                 </div>
-                <?php echo $this->widget()->render('serverTabContent', ['environment' => $this->environment, 'node' => $this->node]); ?>
+                <?php echo $this->widget('serverTabContent')->render($this->viewModel()->getCurrent()); ?>
             </div>
         </div>
     </div>
