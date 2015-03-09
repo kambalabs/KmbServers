@@ -63,6 +63,27 @@ return [
                 'tabindex' => 40,
             ],
         ],
+        'breadcrumb' => [
+            'home' => [
+                'pages' => [
+                    'servers' => [
+                        'label' => $translate('Servers'),
+                        'route' => 'servers',
+                        'action' => 'index',
+                        'useRouteMatch' => true,
+                        'pages' => [
+                            [
+                                'id' => 'server',
+                                'label' => $translate('Server'),
+                                'route' => 'server',
+                                'action' => 'show',
+                                'useRouteMatch' => true,
+                            ]
+                        ],
+                    ],
+                ],
+            ],
+        ],
     ],
     'view_helpers' => [
         'invokables' => [
