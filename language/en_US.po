@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kamba\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 17:18+0100\n"
-"PO-Revision-Date: 2015-01-30 17:18+0100\n"
+"POT-Creation-Date: 2015-03-10 09:56+0100\n"
+"PO-Revision-Date: 2015-03-10 09:56+0100\n"
 "Last-Translator: Emmanuel Bouton <goten4@gmail.com>\n"
 "Language-Team: Kamba Contibutors <devteam@kamba.org>\n"
 "Language: en_US\n"
@@ -16,11 +16,16 @@ msgstr ""
 "X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../config/module.config.php:59
+#: ../config/module.config.php:59 ../config/module.config.php:70
 msgid "Servers"
 msgstr ""
 
-#: ../src/KmbServers/Controller/IndexController.php:125
+#: ../config/module.config.php:77
+#: ../src/KmbServers/View/Decorator/NodeNameDecorator.php:33
+msgid "Server"
+msgstr ""
+
+#: ../src/KmbServers/Controller/IndexController.php:134
 #, php-format
 msgid "The servers has been succesfully assigned to environment %s"
 msgstr ""
@@ -39,10 +44,6 @@ msgstr ""
 
 #: ../src/KmbServers/View/Decorator/NodeKernelDecorator.php:33
 msgid "Kernel"
-msgstr ""
-
-#: ../src/KmbServers/View/Decorator/NodeNameDecorator.php:33
-msgid "Server"
 msgstr ""
 
 #: ../src/KmbServers/View/Decorator/NodeOSDecorator.php:33
@@ -66,7 +67,7 @@ msgid "Filter servers by fact"
 msgstr ""
 
 #: ../view/kmb-servers/index/index.phtml:8
-#: ../view/kmb-servers/index/show.phtml:32
+#: ../view/kmb-servers/index/show.phtml:33
 msgid "Fact"
 msgstr ""
 
@@ -75,7 +76,7 @@ msgid "Select a fact..."
 msgstr ""
 
 #: ../view/kmb-servers/index/index.phtml:18
-#: ../view/kmb-servers/index/show.phtml:33
+#: ../view/kmb-servers/index/show.phtml:34
 msgid "Value"
 msgstr ""
 
@@ -107,24 +108,24 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: ../view/kmb-servers/index/show.phtml:5
+#: ../view/kmb-servers/index/show.phtml:4
 msgid "Detailed informations on server"
 msgstr ""
 
-#: ../view/kmb-servers/index/show.phtml:13
+#: ../view/kmb-servers/index/show.phtml:12
 msgid "back"
 msgstr ""
 
-#: ../view/kmb-servers/index/show.phtml:17
+#: ../view/kmb-servers/index/show.phtml:16
 msgid "day"
 msgid_plural "days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view/kmb-servers/index/show.phtml:18
+#: ../view/kmb-servers/index/show.phtml:17
 msgid "uptime"
 msgstr ""
 
-#: ../view/kmb-servers/index/show.phtml:27
+#: ../view/kmb-servers/index/show.phtml:25
 msgid "Server facts"
 msgstr ""
