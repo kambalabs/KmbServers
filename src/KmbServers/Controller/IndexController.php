@@ -96,10 +96,6 @@ class IndexController extends AbstractActionController implements AuthenticatedC
             'back' => $this->params()->fromQuery('back'),
         ]);
 
-        $this->widget('serverInfoBar')->runActions($model);
-        $this->widget('serverTabTitle')->runActions($model);
-        $this->widget('serverTabContent')->runActions($model);
-
         return $model;
     }
 
