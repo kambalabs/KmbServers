@@ -17,7 +17,7 @@ class IndexControllerFactoryTest extends \PHPUnit_Framework_TestCase
         $controller = $factory->createService($controllerManager);
 
         $this->assertInstanceOf('KmbServers\Controller\IndexController', $controller);
-        $this->assertInstanceOf('KmbDomain\Model\EnvironmentRepositoryInterface', $controller->getEnvironmentRepository());
+        $this->assertInstanceOf('KmbDomain\Service\EnvironmentRepositoryInterface', $controller->getEnvironmentRepository());
         $this->assertInstanceOf('KmbPuppetDb\Service\Node', $controller->getNodeService());
         $this->assertInstanceOf('Zend\Log\Logger', $controller->getLogger());
     }

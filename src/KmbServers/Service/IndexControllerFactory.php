@@ -20,7 +20,7 @@
  */
 namespace KmbServers\Service;
 
-use KmbDomain\Model\EnvironmentRepositoryInterface;
+use KmbDomain\Service\EnvironmentRepositoryInterface;
 use KmbPuppetDb\Service\NodeInterface;
 use KmbServers\Controller\IndexController;
 use Zend\Log\Logger;

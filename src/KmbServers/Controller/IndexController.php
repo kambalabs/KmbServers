@@ -23,7 +23,7 @@ namespace KmbServers\Controller;
 use GtnDataTables\Service\DataTable;
 use KmbAuthentication\Controller\AuthenticatedControllerInterface;
 use KmbDomain\Model\EnvironmentInterface;
-use KmbDomain\Model\EnvironmentRepositoryInterface;
+use KmbDomain\Service\EnvironmentRepositoryInterface;
 use KmbPuppetDb\Service\NodeInterface;
 use Zend\Log\Logger;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -134,7 +134,7 @@ class IndexController extends AbstractActionController implements AuthenticatedC
     /**
      * Set EnvironmentRepository.
      *
-     * @param \KmbDomain\Model\EnvironmentRepositoryInterface $environmentRepository
+     * @param \KmbDomain\Service\EnvironmentRepositoryInterface $environmentRepository
      * @return IndexController
      */
     public function setEnvironmentRepository($environmentRepository)
@@ -146,7 +146,7 @@ class IndexController extends AbstractActionController implements AuthenticatedC
     /**
      * Get EnvironmentRepository.
      *
-     * @return \KmbDomain\Model\EnvironmentRepositoryInterface
+     * @return \KmbDomain\Service\EnvironmentRepositoryInterface
      */
     public function getEnvironmentRepository()
     {

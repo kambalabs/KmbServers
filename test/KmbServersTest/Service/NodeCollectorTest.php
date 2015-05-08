@@ -5,7 +5,7 @@ use KmbDomain\Model\Environment;
 use KmbDomain\Model\EnvironmentInterface;
 use KmbPuppetDb\Model;
 use KmbPuppetDb\Model\NodesCollection;
-use KmbPuppetDb\Query\EnvironmentsQueryBuilderInterface;
+use KmbPuppetDb\Query\QueryBuilderInterface;
 use KmbPuppetDb\Service\NodeInterface;
 use KmbServers\Service\NodeCollector;
 use KmbServersTest\Bootstrap;
@@ -31,7 +31,7 @@ class NodeCollectorTest extends \PHPUnit_Framework_TestCase
 
         $this->nodeCollector = new NodeCollector();
 
-        /** @var EnvironmentsQueryBuilderInterface $nodesEnvironmentsQueryBuilder */
+        /** @var QueryBuilderInterface $nodesEnvironmentsQueryBuilder */
         $nodesEnvironmentsQueryBuilder = Bootstrap::getServiceManager()->get('KmbPuppetDb\Query\NodesEnvironmentsQueryBuilder');
         $this->nodeCollector->setNodesEnvironmentsQueryBuilder($nodesEnvironmentsQueryBuilder);
 

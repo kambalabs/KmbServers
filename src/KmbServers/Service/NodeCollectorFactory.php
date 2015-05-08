@@ -21,7 +21,7 @@
 namespace KmbServers\Service;
 
 use KmbPermission\Service\EnvironmentInterface;
-use KmbPuppetDb\Query\EnvironmentsQueryBuilderInterface;
+use KmbPuppetDb\Query\QueryBuilderInterface;
 use KmbPuppetDb\Service;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -42,7 +42,7 @@ class NodeCollectorFactory implements FactoryInterface
         $nodeService = $serviceLocator->get('KmbPuppetDb\Service\Node');
         $service->setNodeService($nodeService);
 
-        /** @var EnvironmentsQueryBuilderInterface $nodesEnvironmentsQueryBuilder */
+        /** @var QueryBuilderInterface $nodesEnvironmentsQueryBuilder */
         $nodesEnvironmentsQueryBuilder = $serviceLocator->get('KmbPuppetDb\Query\NodesEnvironmentsQueryBuilder');
         $service->setNodesEnvironmentsQueryBuilder($nodesEnvironmentsQueryBuilder);
 
