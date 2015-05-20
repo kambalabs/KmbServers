@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kamba\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-10 09:56+0100\n"
-"PO-Revision-Date: 2015-03-10 09:56+0100\n"
+"POT-Creation-Date: 2015-05-20 13:37+0100\n"
+"PO-Revision-Date: 2015-05-20 13:37+0100\n"
 "Last-Translator: Emmanuel Bouton <goten4@gmail.com>\n"
 "Language-Team: Kamba Contibutors <devteam@kamba.org>\n"
 "Language: en_US\n"
@@ -25,9 +25,11 @@ msgstr ""
 msgid "Server"
 msgstr ""
 
-#: ../src/KmbServers/Controller/IndexController.php:134
+#: ../src/KmbServers/Controller/IndexController.php:130
 #, php-format
-msgid "The servers has been succesfully assigned to environment %s"
+msgid ""
+"The servers has been succesfully assigned to environment <a href=\"%s\">%s</"
+"a>"
 msgstr ""
 
 #: ../src/KmbServers/View/Decorator/NodeCPUDecorator.php:33

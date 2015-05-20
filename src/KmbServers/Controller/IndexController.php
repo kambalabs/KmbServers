@@ -127,7 +127,7 @@ class IndexController extends AbstractActionController implements AuthenticatedC
             }
         }
 
-        $this->flashMessenger()->addSuccessMessage(sprintf($this->translate('The servers has been succesfully assigned to environment %s'), $environment->getNormalizedName()));
+        $this->flashMessenger()->addSuccessMessage(sprintf($this->translate('The servers has been succesfully assigned to environment <a href="%s">%s</a>'), $this->url()->fromRoute('servers', ['action' => 'index', 'envId' => $environment->getId()]), $environment->getNormalizedName()));
         return $this->redirect()->toRoute('servers', ['action' => 'index'], [], true);
     }
 
