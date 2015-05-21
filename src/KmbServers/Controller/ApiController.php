@@ -33,15 +33,18 @@ class ApiController extends AbstractRestfulController
         /** @var \KmbPuppetDb\Service\NodeInterface $nodeService */
         $nodeService = $this->serviceLocator->get('KmbPuppetDb\Service\Node');
 
-        /** @var EnvironmentInterface $environment */
-        $environment = $this->serviceLocator->get('EnvironmentRepository')->getByNormalizedName($this->params()->fromRoute('env'));
         $environments = [];
-        if ($environment) {
+        /** @var EnvironmentInterface $environment */
+        $environmentName = $this->params()->fromRoute('env');
+        if ($environmentName) {
+            $environment = $this->serviceLocator->get('EnvironmentRepository')->getByNormalizedName($environmentName);
+            if (!$environment) {
+                return new JsonModel();
+            }
             $descendants = $environment->getDescendants();
             array_unshift($descendants, $environment);
-            $environments = ArrayUtils::merge($environments, $descendants);
+            $environments = array_unique(ArrayUtils::merge($environments, $descendants));
         }
-        $environments = array_unique($environments);
 
         $query = null;
         if (!empty($environments)) {

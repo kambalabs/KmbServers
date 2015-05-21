@@ -68,6 +68,18 @@ class ApiControllerTest extends AbstractHttpControllerTestCase
     }
 
     /** @test */
+    public function cannotGetIndexForUnknownEnvironment()
+    {
+        $this->dispatch('/api/env/UNKNOWN/servers');
+
+        $this->assertResponseStatusCode(200);
+        $this->assertControllerName('KmbServers\Controller\Api');
+        $this->assertActionName('getList');
+        $response = Json::decode($this->getResponse()->getContent(), Json::TYPE_ARRAY);
+        $this->assertEquals([], $response);
+    }
+
+    /** @test */
     public function canGetIndexForSpecifiedEnvironment()
     {
         $this->dispatch('/api/env/STABLE/servers');
