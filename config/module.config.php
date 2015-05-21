@@ -37,6 +37,33 @@ return [
                     ],
                 ],
             ],
+            'api-servers' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/api[/env/:env]/servers',
+                    'constraints' => [
+                        'env' => '[a-zA-Z0-9_]+',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'KmbServers\Controller',
+                        'controller' => 'Api',
+                        'env' => '',
+                    ],
+                ],
+            ],
+            'api-server' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/api/server/:id',
+                    'constraints' => [
+                        'id' => '(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'KmbServers\Controller',
+                        'controller' => 'Api',
+                    ],
+                ],
+            ],
         ],
     ],
     'translator' => [
@@ -49,8 +76,11 @@ return [
         ],
     ],
     'controllers' => [
+        'invokables' => [
+            'KmbServers\Controller\Api' => 'KmbServers\Controller\ApiController',
+        ],
         'factories' => [
-            'KmbServers\Controller\Index' => 'KmbServers\Service\IndexControllerFactory'
+            'KmbServers\Controller\Index' => 'KmbServers\Service\IndexControllerFactory',
         ],
     ],
     'navigation' => [
@@ -101,6 +131,11 @@ return [
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
+            'KmbServers\Service\NodeCollector' => 'KmbServers\Service\NodeCollectorFactory',
         ],
     ],
     'zfc_rbac' => [
