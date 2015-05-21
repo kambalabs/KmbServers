@@ -1,8 +1,9 @@
 <?php
 namespace KmbServersTest\Controller;
 
-use GtnDataTables\Model\Collection;
+use KmbDomain\Model\Environment;
 use KmbPuppetDb\Model\Node;
+use KmbPuppetDb\Model\NodesCollection;
 use KmbServersTest\Bootstrap;
 use Zend\Json\Json;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
@@ -17,27 +18,35 @@ class ApiControllerTest extends AbstractHttpControllerTestCase
         $serviceManager = $this->getApplicationServiceLocator();
         $serviceManager->setAllowOverride(true);
 
-        $nodeCollector = $this->getMock('KmbServers\Service\NodeCollector');
-        $nodeCollector->expects($this->any())
-            ->method('findAll')
-            ->will($this->returnCallback(function ($params) {
-                $nodes = [
-                    new Node('node1.local', 'unchanged', new \DateTime('2015-05-20 10:12:58')),
-                    new Node('node2.local', 'unchanged', new \DateTime('2015-05-20 10:13:21')),
-                    new Node('node3.local', 'failed', new \DateTime('2015-05-20 10:12:47'))
-                ];
-                if (empty($params)) {
-                    return Collection::factory($nodes);
+        $environmentRepository = $this->getMock('KmbDomain\Service\EnvironmentRepositoryInterface');
+        $environmentRepository->expects($this->any())
+            ->method('getByNormalizedName')
+            ->will($this->returnCallback(function ($name) {
+                if ($name != 'STABLE') {
+                    return null;
                 }
-                return Collection::factory(array_slice($nodes, 0, 1));
+                return new Environment('STABLE');
             }));
-        $serviceManager->setService('KmbServers\Service\NodeCollector', $nodeCollector);
+        $serviceManager->setService('EnvironmentRepository', $environmentRepository);
 
         $nodeService = $this->getMock('KmbPuppetDb\Service\Node');
         $nodeService->expects($this->any())
             ->method('getByName')
             ->will($this->returnCallback(function ($name) {
                 return new Node($name, 'unchanged', new \DateTime('2015-05-20 10:12:58'), ['operatingsystem' => 'Debian']);
+            }));
+        $nodeService->expects($this->any())
+            ->method('getAll')
+            ->will($this->returnCallback(function ($query) {
+                $nodes = [
+                    new Node('node1.local', 'unchanged', new \DateTime('2015-05-20 10:12:58')),
+                    new Node('node2.local', 'unchanged', new \DateTime('2015-05-20 10:13:21')),
+                    new Node('node3.local', 'failed', new \DateTime('2015-05-20 10:12:47'))
+                ];
+                if (empty($query)) {
+                    return NodesCollection::factory($nodes);
+                }
+                return NodesCollection::factory(array_slice($nodes, 0, 1));
             }));
         $serviceManager->setService('KmbPuppetDb\Service\Node', $nodeService);
     }

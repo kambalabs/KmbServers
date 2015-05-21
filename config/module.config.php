@@ -133,11 +133,6 @@ return [
             __DIR__ . '/../view',
         ],
     ],
-    'service_manager' => [
-        'factories' => [
-            'KmbServers\Service\NodeCollector' => 'KmbServers\Service\NodeCollectorFactory',
-        ],
-    ],
     'zfc_rbac' => [
         'guards' => [
             'ZfcRbac\Guard\ControllerGuard' => [

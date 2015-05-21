@@ -20,26 +20,36 @@
  */
 namespace KmbServers\Controller;
 
+use KmbDomain\Model\EnvironmentInterface;
 use KmbPuppetDb\Model\NodeInterface;
-use KmbServers\Service\NodeCollector;
 use Zend\Mvc\Controller\AbstractRestfulController;
+use Zend\Stdlib\ArrayUtils;
 use Zend\View\Model\JsonModel;
 
 class ApiController extends AbstractRestfulController
 {
     public function getList()
     {
-        /** @var NodeCollector $nodeCollector */
-        $nodeCollector = $this->serviceLocator->get('KmbServers\Service\NodeCollector');
-        $environmentName = $this->params()->fromRoute('env');
+        /** @var \KmbPuppetDb\Service\NodeInterface $nodeService */
+        $nodeService = $this->serviceLocator->get('KmbPuppetDb\Service\Node');
 
-        $params = null;
-        if ($environmentName) {
-            $params = ['environment' => $environmentName];
+        /** @var EnvironmentInterface $environment */
+        $environment = $this->serviceLocator->get('EnvironmentRepository')->getByNormalizedName($this->params()->fromRoute('env'));
+        $environments = [];
+        if ($environment) {
+            $descendants = $environment->getDescendants();
+            array_unshift($descendants, $environment);
+            $environments = ArrayUtils::merge($environments, $descendants);
+        }
+        $environments = array_unique($environments);
+
+        $query = null;
+        if (!empty($environments)) {
+            $query = $this->serviceLocator->get('KmbPuppetDb\Query\NodesEnvironmentsQueryBuilder')->build($environments)->getData();
         }
 
         $nodes = [];
-        foreach ($nodeCollector->findAll($params) as $node) {
+        foreach ($nodeService->getAll($query) as $node) {
             /** @var NodeInterface $node */
             $nodes[] = [
                 'name' => $node->getName(),
