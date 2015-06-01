@@ -2,7 +2,7 @@
 return [
     'controller_plugins' => [
         'invokables' => [
-            'writeLog' => 'KmbServersTest\Controller\Plugin\WriteLog',
+            'writeLog' => 'KmbBaseTest\Controller\Plugin\FakeWriteLog',
         ],
         'factories' => [
             'translate' => 'KmbBaseTest\Controller\Plugin\FakeTranslateFactory',
