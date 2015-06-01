@@ -119,14 +119,18 @@ class IndexController extends AbstractActionController implements AuthenticatedC
             return $this->notFoundAction();
         }
 
+        $normalizedName = $environment->getNormalizedName();
+        $nodes = [];
         foreach ($this->params()->fromPost('nodes', []) as $nodeName) {
             $node = $this->nodeService->getByName($nodeName);
             if ($node !== null) {
-                $node->setEnvironment($environment->getNormalizedName());
+                $node->setEnvironment($normalizedName);
                 $this->nodeService->replaceFacts($node);
+                $nodes[] = '<code style="">' . $nodeName . '</code>';
             }
         }
 
+        $this->writeLog(sprintf($this->translate("Assign following servers to environment %s : %s"), $normalizedName, implode(', ', $nodes)));
         $this->flashMessenger()->addSuccessMessage(sprintf($this->translate('The servers has been succesfully assigned to environment <a href="%s">%s</a>'), $this->url()->fromRoute('servers', ['action' => 'index', 'envId' => $environment->getId()]), $environment->getNormalizedName()));
         return $this->redirect()->toRoute('servers', ['action' => 'index'], [], true);
     }

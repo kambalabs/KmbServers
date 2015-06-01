@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kamba\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 13:36+0100\n"
-"PO-Revision-Date: 2015-05-20 13:36+0100\n"
+"POT-Creation-Date: 2015-06-01 16:06+0100\n"
+"PO-Revision-Date: 2015-06-01 16:07+0100\n"
 "Last-Translator: Emmanuel Bouton <goten4@gmail.com>\n"
 "Language-Team: Kamba Contibutors <devteam@kamba.org>\n"
 "Language: fr_FR\n"
@@ -16,16 +16,21 @@ msgstr ""
 "X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../config/module.config.php:59 ../config/module.config.php:70
+#: ../config/module.config.php:89 ../config/module.config.php:100
 msgid "Servers"
 msgstr "Serveurs"
 
-#: ../config/module.config.php:77
+#: ../config/module.config.php:107
 #: ../src/KmbServers/View/Decorator/NodeNameDecorator.php:33
 msgid "Server"
 msgstr "Serveur"
 
-#: ../src/KmbServers/Controller/IndexController.php:130
+#: ../src/KmbServers/Controller/IndexController.php:133
+#, php-format
+msgid "Assign following servers to environment %s : %s"
+msgstr "Affectation des serveurs suivant à l'environnement %s : %s"
+
+#: ../src/KmbServers/Controller/IndexController.php:134
 #, php-format
 msgid ""
 "The servers has been succesfully assigned to environment <a href=\"%s\">%s</"
