@@ -126,7 +126,7 @@ class IndexController extends AbstractActionController implements AuthenticatedC
             if ($node !== null) {
                 $node->setEnvironment($normalizedName);
                 $this->nodeService->replaceFacts($node);
-                $nodes[] = '<code style="">' . $nodeName . '</code>';
+                $nodes[] = '<code class="text-nowrap">' . $nodeName . '</code>';
             }
         }
 
